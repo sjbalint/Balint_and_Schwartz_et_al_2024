@@ -18,33 +18,14 @@ intermediate.df <- normalizations.df %>%
   filter(standards != "IAEA600_USGS91") %>%
   mutate(abs.deviation = abs(isotope.deviation)) %>%
   ungroup() %>%
-  mutate(deviation_significant = factor(deviation_significant, 
-                                        levels=c(TRUE, FALSE),
-                                        labels=c("Significant","Nonsignificant")),
+  mutate(
          Method.1 = factor(Method,
                            levels=c("one.point","two.point","three.point","four.point"),
                            labels=c("One Point","Two Point","Three Point","Four Point")),
-         Method.2 = factor(Method,
-                           levels=c("one.point","two.point","three.point","four.point"),
-                           labels=c("One","Two","Three","Four")),
-         Species.2 = factor(Species,
-                            levels=c("N","C"),
-                            labels=c("Nitrogen Deviation (‰)",
-                                     "Carbon Deviation (‰)")),
          Species.3 = factor(Species,
                             levels=c("N","C"),
                             labels=c("Nitrogen",
-                                     "Carbon")),
-         Species = factor(Species,
-                          levels=c("N","C"),
-                          labels=c("Nitrogen\nDeviation\n(‰)",
-                                   "Carbon\nDeviation\n(‰)")),
-         iso.rangebreaks = cut(isotope.range,
-                               breaks=c(0,15,30,45),
-                               labels=c("0 to 15","15 to 30","30 to 45"))
-  )
-
-
+                                     "Carbon")))
 # calculate "final" slope -------------------------------------------------
 
 species_list <- raw_data.df %>%
@@ -64,7 +45,7 @@ for (species in species_list){
       filter(Species==species) %>%
       filter(Facility==facility) %>%
       filter(Type=="Normalization")%>%
-      lm(isotope.expected~isotope.raw, data=.)
+      lm(isotope.raw~isotope.expected, data=.)
     
     slope <- slope$coefficients[2]
     
@@ -83,7 +64,7 @@ slope.df$Species.3 <- factor(slope.df$Species,
 
 # configure graphing ------------------------------------------------------
 
-fig_path <- "figures/v6/"
+fig_path <- "figures/"
 
 mywidth <- 6
 myheight <- 6
@@ -117,7 +98,7 @@ basetheme <- list(
 
 plot.df <- intermediate.df %>%
   filter(Method!="one.point") %>%
-  select(Species,Slope,Facility,Method.1, Method.2, Species.3, isotope.range, deviation_significant) %>%
+  select(Species,Slope,Facility,Method.1, Species.3, isotope.range) %>%
   unique()
 #mutate(Method.1=factor(Method.1, levels=c("Four Point","Three Point","Two Point")))
 

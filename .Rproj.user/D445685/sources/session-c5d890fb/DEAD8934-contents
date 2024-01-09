@@ -80,7 +80,7 @@ ggplot(plot.df, aes(mg,amplitude.deviation,fill=Matrix,shape=Matrix))+
   mytheme+
   facet_grid(Facility~Species, switch="both", scales="free_x")
 
-ggsave(paste0(fig_path,"Fig_S2.png"), width=mywidth, height=myheight)
+ggsave(paste0(fig_path,"Fig_S3.png"), width=mywidth, height=myheight)
 
 
 

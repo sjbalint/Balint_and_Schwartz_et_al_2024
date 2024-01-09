@@ -110,6 +110,10 @@ for(combo in combos.list){# for every QC/standard combination
           pull(isotope.raw)
         
         for (name in unique(temp.df$Name)){
+          
+          z <- temp.df %>%
+            filter(Name==name) %>%
+            pull(isotope.raw)
         
         #perform different method for one-point calibration
           if (length(standards)==1){
@@ -120,9 +124,10 @@ for(combo in combos.list){# for every QC/standard combination
             intercept <- coefficients(lm)
             intercept.confi95 <- intercept-confint(lm, level=0.95)[1,1]
             
-            isotope.norm <- mean(temp.df$isotope.raw+intercept)
+            isotope.norm <- mean(z+intercept)
             isotope.SE <- summary(lm)$sigma
             isotope.confi95 <- intercept.confi95
+            one.point.mean <- mean(x)
             
           } else {
             lm <- lm(y~x)
@@ -132,15 +137,13 @@ for(combo in combos.list){# for every QC/standard combination
             intercept <- coefficients(lm)[1]
             intercept.confi95 <- intercept-confint(lm, level=0.95)[1,1]
             
-            z <- temp.df %>%
-              filter(Name==name) %>%
-              pull(isotope.raw)
-            
             prediction <- inverse.predict(lm, z)
             
             isotope.norm <- prediction$Prediction
             isotope.SE <- prediction$`Standard Error`
             isotope.confi95 <- prediction$Confidence
+            
+            one.point.mean <- NA
              
           }
           
@@ -159,7 +162,8 @@ for(combo in combos.list){# for every QC/standard combination
                                  standards=paste(standards,collapse = '_'),
                                  isotope.norm=isotope.norm,
                                  isotope.SE=isotope.SE,
-                                 isotope.confi95=isotope.confi95)
+                                 isotope.confi95=isotope.confi95,
+                                 one.point.mean)
           
           results.list <- append(results.list,list(new.data))
           
