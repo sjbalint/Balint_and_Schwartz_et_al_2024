@@ -11,18 +11,7 @@ library(progress) #for progress bar
 
 #load raw combined data
 iso.df <- readRDS("Rdata/raw_data.rds")%>%
-  select(IRMS.ID,Name,Weight.mg, Species,Facility,Type,Matrix,isotope.raw,isotope.expected, isotope.precision) %>%
-  arrange(Species,Facility,Name)
-
-#export the raw data as a csv for external assessment
-write.csv(iso.df,"export/raw_data.csv",row.names=FALSE)
-
-wide.df <- iso.df %>%
-  drop_na(Type) %>%
-  pivot_wider(names_from="Species",values_from=c("isotope.raw","isotope.expected", "isotope.precision"))
-
-#export the raw data as a csv for external assessment
-write.csv(wide.df,"export/wide_data.csv",row.names=FALSE)
+  select(IRMS.ID,Name,Weight.mg, Species,Facility,Type,Matrix,isotope.raw,isotope.expected, isotope.precision)
 
 # figure out all of the possible normalization combinations ---------------
 

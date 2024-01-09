@@ -200,3 +200,20 @@ iso.df <- iso.df %>%
 # save data ---------------------------------------------------------------
 
 saveRDS(iso.df,file="Rdata/raw_data.rds")
+
+
+# summarize the raw data --------------------------------------------------
+
+iso.df <- iso.df%>%
+  select(IRMS.ID,Name,Species,Facility,Type,Matrix,isotope.raw,isotope.expected) %>%
+  arrange(Species,Facility,Name)
+
+#export the raw data as a csv for external assessment
+write.csv(iso.df,"export/raw_data_long.csv",row.names=FALSE)
+
+wide.df <- iso.df %>%
+  drop_na(Type) %>%
+  pivot_wider(names_from="Species",values_from=c("isotope.raw","isotope.expected"))
+
+#export the raw data as a csv for external assessment
+write.csv(wide.df,"export/raw_data_wide.csv",row.names=FALSE)
