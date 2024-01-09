@@ -1,0 +1,183 @@
+#clear environment
+rm(list = ls())
+
+library(tidyverse) #used for everything
+library(readxl) #used to import data
+library(ggrepel) #used to stop labels from overlaping while graphing
+library(knitr) #used to print the results
+library(cowplot) #to format linearity plots
+
+# import data -------------------------------------------------------------
+
+load("Rdata/isotopes.Rdata")
+
+# normalization -----------------------------------------------------------
+
+norm.list <- colnames(iso.df)[9:ncol(iso.df)] #create a list of all normalization scenarios
+
+facility.list <- iso.df %>%
+  pull(Facility) %>%
+  unique()
+
+results.df <- iso.df
+
+standards.df <- data.frame()
+
+row <- 0
+
+for (normalization in norm.list){
+  results.df <- results.df %>%
+    select(-normalization)
+  
+  row <- row+1
+  
+  standard.list <- iso.df %>%
+    filter(get(normalization)==TRUE) %>%
+    pull(Name) %>%
+    unique()
+  
+  standards.df[row,"Method"] <- normalization
+  standards.df[row,"Standards"] <- paste(standard.list,collapse = ' ')
+  
+  for (facility in facility.list){
+    for (myspecies in c("N","C")){
+      temp.df <- iso.df %>%
+        filter(get(normalization)==TRUE) %>%
+        filter(Species==myspecies)%>%
+        filter(Facility==facility)
+      
+      y <- temp.df$isotope.expected
+      x <- temp.df$isotope.raw
+      
+      lm <- lm(y~x)
+      slope <- coef(lm)[2]
+      intercept <- coef(lm)[1]
+      
+      
+      if (slope<0.5){
+        slope <- 1
+        intercept <- mean(y)-mean(x)
+      }
+      
+      for (myrow in 1:nrow(results.df)){
+        if (results.df[myrow,"Species"]==myspecies & results.df[myrow,"Facility"]==facility){
+          results.df[myrow,normalization] <- results.df[myrow, "isotope.raw"] * slope + intercept
+          results.df[myrow,normalization] <- results.df[myrow,normalization] - results.df[myrow,"isotope.expected"]
+        }
+      }
+    }
+  }
+}
+
+
+# summarize the results ---------------------------------------------------
+
+summary.df <- results.df %>%
+  filter(Type=="Quality Control") %>%
+  select(-c(Name,Type,Matrix,slope,`Amplitude`,isotope.raw,isotope.expected)) %>%
+  group_by(Species,Facility) %>%
+  summarize_all(mean) %>%
+  mutate_if(is.numeric,round,digits=3) %>%
+  pivot_longer(-c(Species,Facility), names_to="Method")
+
+epa_summary.df <- summary.df %>% 
+  filter(Facility==facility.list[1]) %>%
+  select(-Facility) %>%
+  rename("EPA"="value")
+
+csi_summary.df <- summary.df %>% 
+  filter(Facility==facility.list[2]) %>%
+  select(-Facility) %>%
+  rename("CSI"="value")
+
+summary.df <- full_join(epa_summary.df,csi_summary.df)
+
+summary.df$Difference <- summary.df$EPA-summary.df$CSI
+
+kable(summary.df)
+
+kable(standards.df)
+
+write.csv(standards.df,"export/normalization_standards.csv",row.names=FALSE)
+
+
+# configure graphing ------------------------------------------------------
+
+theme_set(theme_classic())
+
+mywidth <- 8
+myheight <- 4.5
+
+mytheme <- list(
+  theme(
+    text=element_text(size=12),
+    strip.background = element_blank(),
+    legend.title=element_blank(),
+    panel.grid.major.x = element_line(size=.1, color="gray"), 
+    panel.grid.major.y = element_line(size=.1, color="gray"),
+    axis.title.y = element_text(angle = 0,vjust = 0.5),
+    strip.text.y.left = element_text(angle = 0),
+    axis.text.x = element_text(colour = "black"),
+    axis.text.y = element_text(colour = "black"),
+    legend.position="bottom",
+    strip.placement = "outside"),
+  scale_shape_manual(values=c(21:24)),
+  scale_fill_viridis_d(),
+  scale_color_viridis_d(),
+  labs(x=NULL,y=NULL)
+)
+
+
+# graph normalization results ---------------------------------------------
+
+plot.df <- results.df %>%
+  filter(Type=="Quality Control") %>%
+  select(-c(Name,Type,Matrix,`Amplitude`,isotope.raw,isotope.expected))
+
+plot.df <- plot.df %>%
+  pivot_longer(3:ncol(plot.df),names_to="Method",values_to="Deviation")
+
+plot.df$Method <- sub(" ", "\n", plot.df$Method)
+plot.df$Method <- sub(" ", "\n", plot.df$Method)
+
+plot.df$Method <- factor(plot.df$Method)
+
+#use parsed labels for delta notation
+plot.df$Species <- factor(plot.df$Species,
+                          levels=c("N","C"),
+                          labels=c(bquote(atop(delta^15*N,'(‰)')),
+                                   bquote(atop(delta^13*C,'(‰)'))))
+
+ggplot(plot.df,aes(x=reorder(Method, Deviation, FUN = mean),Deviation))+
+  geom_jitter(aes(shape=Facility,fill=Facility),width=0.25, size=1.5,alpha=0.5)+
+  geom_boxplot(width=0.5,alpha=0.2,fill="grey",outlier.shape = NA)+
+  geom_hline(yintercept=0,linetype="dashed")+
+  facet_wrap(.~Species,ncol=1,labeller=label_parsed, strip.position = "left",scales="free_y")+
+  mytheme+
+  theme(strip.placement = "outside",
+        legend.position=c(0.5,0.9))
+
+ggsave("figures/norm_boxplot_2.png",width=mywidth, height=myheight)
+
+plot.df <- summary.df
+
+plot.df$Method <- sub(" ", "\n", plot.df$Method)
+plot.df$Method <- sub(" ", "\n", plot.df$Method)
+
+plot.df$Method <- factor(plot.df$Method)
+
+#use parsed labels for delta notation
+plot.df$Species <- factor(plot.df$Species,
+                          levels=c("N","C"),
+                          labels=c(bquote(atop(delta^15*N,'(‰)')),
+                                   bquote(atop(delta^13*C,'(‰)'))))
+
+ggplot(plot.df,aes(x=reorder(Method, Difference),Difference))+
+  geom_point(size=4, shape=21, fill="grey",)+
+  geom_hline(yintercept=0,linetype="dashed")+
+  facet_wrap(.~Species,ncol=1,labeller=label_parsed, strip.position = "left",scales="free_y")+
+  mytheme+
+  theme(strip.placement = "outside")+
+  labs(title="Difference between U.S. EPA and UNM CSI")
+
+ggsave("figures/norm_difference.png",width=mywidth, height=myheight)

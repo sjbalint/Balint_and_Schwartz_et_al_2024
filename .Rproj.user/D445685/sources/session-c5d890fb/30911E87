@@ -1,0 +1,26 @@
+{
+    "id": "30911E87",
+    "path": "~/Documents/GitHub/Balint_and_Schwartz_et_al_2024/scripts/graphing/logscale_boxplots.R",
+    "project_path": "scripts/graphing/logscale_boxplots.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1704825533927.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "281,69",
+        "scrollLine": "269"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1704827219,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1704827219509,
+    "read_only": false,
+    "read_only_alternatives": []
+}

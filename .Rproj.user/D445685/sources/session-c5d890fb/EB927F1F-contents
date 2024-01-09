@@ -1,0 +1,89 @@
+#clear environment
+rm(list = ls())
+
+library(tidyverse) #used for everything
+library(readxl) #used to import data
+library(ggrepel) #used to stop labels from overlaping while graphing
+library(knitr) #used to print the results
+library(cowplot) #to format linearity plots
+library(ggsci) #for plotting colors
+
+# import data -------------------------------------------------------------
+
+load("Rdata/isotopes.Rdata")
+
+
+# configure plotting ------------------------------------------------------
+
+mywidth <- 6
+myheight <- 6
+
+mytheme <- list(
+  theme_classic(),
+  geom_hline(yintercept=0,linetype="dashed"),
+  geom_point(alpha=0.8, size=2),
+  facet_wrap(~Species,ncol=1,strip.position = "left", scales="free"),
+  theme(
+    text=element_text(size=12),
+    strip.background = element_blank(),
+    legend.title=element_blank(),
+    panel.grid.major.x = element_line(size=.1, color="gray"), 
+    panel.grid.major.y = element_line(size=.1, color="gray"),
+    #axis.title.y = element_text(angle = 0,vjust = 0.5),
+    #strip.text.y.left = element_text(angle = 0),
+    axis.text.x = element_text(colour = "black"),
+    axis.text.y = element_text(colour = "black"),
+    legend.position="bottom",
+    strip.placement = "outside"),
+  scale_shape_manual(values=c(21:24)),
+  scale_fill_viridis_d(option="cividis", begin = 0, end = 1, direction=-1),
+  scale_color_viridis_d(option="cividis", begin = 0, end = 1,direction=-1),
+  labs(x=NULL,y=NULL),
+  lims(y=c(-3,2))
+  #scale_x_log10()
+)
+
+plot.df <- iso.df %>%
+  filter(Type=="Linearity") %>%
+  select(Name,Weight.mg,Matrix,Species,Facility,Amplitude,Target.Amplitude,isotope.raw) %>%
+  mutate(relative.amplitude = Amplitude/Weight.mg) %>%
+group_by(Name,Species,Facility) %>%
+  mutate(isotope.deviation = isotope.raw-median(isotope.raw),
+         amplitude.deviation = relative.amplitude-median(relative.amplitude)) %>%
+  ungroup()
+
+#use parsed labels for delta notation
+plot.df$Species <- factor(plot.df$Species,
+                          levels=c("N","C"),
+                          labels=c("Nitrogen Amplitude / Weight",
+                                   "Carbon Amplitude / Weight"))
+
+p1 <- ggplot(subset(plot.df,Facility=="U.S. EPA"),aes(Amplitude,amplitude.deviation,fill=Matrix,shape=Matrix))+
+  mytheme+
+  labs(title="U.S. EPA",x="Peak Amplitude (nA)")
+
+mymatrix <- plot.df %>%
+  filter(Facility=="U.S. EPA") %>%
+  pull(Matrix) %>%
+  unique()
+
+#myfill <- pull(unique(ggplot_build(p1)$data[[1]]["fill"]))
+#myshape <- pull(unique(ggplot_build(p1)$data[[1]]["shape"]))
+
+p2 <- ggplot(subset(plot.df,Facility=="UNM CSI"),aes(Amplitude,amplitude.deviation,fill=Matrix,shape=Matrix))+
+  mytheme+
+  theme(legend.position="none",
+        strip.text.y.left = element_blank())+
+  #scale_fill_manual(values=myfill)+
+  #scale_shape_manual(values=myshape)+
+  labs(title="UNM CSI",x="Peak Amplitude (V)")
+
+mylegend <- get_legend(p1)
+
+p3 <- plot_grid(p1+theme(legend.position="none"), p2, nrow = 1, rel_widths=c(1,0.85))
+
+plot_grid(p3,mylegend,nrow=2,rel_heights=c(2,0.1))
+
+ggsave("figures/v3/linearity_combustion.png",width=mywidth, height=myheight)
+
+

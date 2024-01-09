@@ -1,0 +1,78 @@
+library(tidyverse) #used for everything
+library(readxl) #used to import data
+library(ggrepel) #used to stop labels from overlaping while graphing
+library(ggsci)
+
+
+#clear environment
+rm(list = ls())
+
+# import data and format --------------------------------------------------
+
+load("Rdata/raw_data.rds")
+
+iso.df <- iso.df %>%
+  select(Name,Species,Type,Matrix,isotope.expected) %>%
+  unique()%>%
+  pivot_wider(names_from="Species",values_from="isotope.expected") %>%
+  rename("expected.d15N"="N",
+         "expected.d13C"="C")
+
+iso.df$Type <- factor(iso.df$Type,levels=c("Normalization","Linearity","Quality Control"),
+                       labels=c("Normalization (n=4)","Linearity (n=10)","Quality Control (n=4)"))
+
+# format plotting ---------------------------------------------------------
+
+theme_set(theme_classic()) #base theme
+
+mywidth <- 5 #width of exported plots in inches
+myheight <- 4 #height of exported plots in inches
+
+#create a global theme for all plots
+basetheme <- list(
+  theme(
+    text=element_text(size=12), #set text size to 12
+    legend.title=element_blank(), #remove legend title
+    panel.grid.major.x = element_line(size=.1, color="gray"), #add grey grid
+    panel.grid.major.y = element_line(size=.1, color="gray"),
+    axis.title.y = element_text(angle = 0,vjust = 0.5), #make y-axis title horizontal
+    axis.text.x = element_text(colour = "black"), #make axis labels black
+    axis.text.y = element_text(colour = "black"),
+    legend.position=c(.2,.9)), #put the legend in the upper left corner
+  scale_shape_manual(values=c(21:24)), #set shapes to use in plots (circles, squares, and diamonds)
+  scale_alpha_manual(values=c(0.2,1)), #set alpha values (transparency) to be used in plot
+  scale_fill_jco(), #set color scale to viridis, which is color-blind accessible
+  guides(alpha = "none") #remove alpha from legend
+)
+
+mytheme <- list(
+  basetheme,
+  geom_point(size=3,color="black"), #these are the points on the graph
+  geom_text_repel(fill="white",point.padding=5, size=2),#these are the labels
+  labs(y=bquote(atop(delta^15*N,'(‰)')), #use bquote() for delta-notation
+        x=bquote(delta^13*C~'(‰)'))
+)
+
+set_alpha <- function(df,name.list){
+  df$plot <- NA
+  for (row in 1:nrow(df)){ #iterate over every row in the dataframe
+    for (myname in name.list){
+      if (df[row,"Name"]==myname){
+        df[row,"plot"] <- TRUE #add "TRUE" to the plot column if the name is in our list
+      }
+    }
+    if (is.na(df[row,"plot"])==TRUE){ #if the plot column has not been set to TRUE...
+      df[row,"plot"] <- FALSE #... set it to FALSE...
+      df[row,"Name"] <- NA #...and remove the name (this will them remove the label from the plot)
+    }
+  }
+  return(df)
+}
+
+# plot isotopic range of standards ----------------------------------------
+
+ggplot(iso.df,aes(`expected.d13C`,`expected.d15N`,shape=Type,fill=Type,label=Name))+
+  mytheme #add our custom theme to the plot
+
+ggsave("figures/isorange/standard_isorange.png",width=mywidth, height=myheight) #save the fingure as a png
+

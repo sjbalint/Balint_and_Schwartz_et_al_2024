@@ -1,0 +1,156 @@
+require(tidyverse)
+require(readxl)
+require(ggpubr)
+require(scales)
+require(rstatix)
+require(paletteer)
+require(ggpmisc)
+library(extrafont)
+require(ggrepel)
+
+
+#clear environment
+rm(list = ls())
+
+
+# format plots ------------------------------------------------------------
+
+theme_set(theme_classic())
+
+mywidth <- 9
+myheight <- 4.5
+
+mytheme <- list(
+  theme(
+    text=element_text(size=12),
+    legend.title=element_blank(),
+    panel.grid.major.x = element_line(size=.1, color="gray"), 
+    panel.grid.major.y = element_line(size=.1, color="gray"),
+    axis.title.y = element_text(angle = 0,vjust = 0.5),
+    axis.text.x = element_text(colour = "black"),
+    axis.text.y = element_text(colour = "black")),
+  scale_shape_manual(values=c(21:24)),
+  scale_fill_grey(start=0.5,end=0.9)
+)
+
+# import data and format --------------------------------------------------
+
+iso.df <- read_excel('raw/ratios_LBJ.xlsx',sheet="CN_Raw_all_peaks_w_ratios.wke") %>%
+  mutate(across(c("Identifier 1","Identifier 2","Comment","Preparation","Method"),as.factor)) %>%
+  mutate(across("Time Code",as.POSIXct)) %>%
+  mutate_if(is.character,as.numeric)
+
+str(iso.df)
+
+std.df <- read_excel('raw/RunData_06252022.xlsx',sheet="Initialization") %>%
+  mutate_if(is.character,as.factor)
+
+std.df$regression <- as.factor(std.df$regression)
+  
+str(std.df)
+
+weekone.df <- read_excel('raw/WeekOneGroups.xlsx')%>%
+  mutate(across(c("Run","Identifier 1","Identifier 2","Comment","Preparation","Method"),as.factor)) %>%
+  mutate(across("Time Code",as.POSIXct)) %>%
+  mutate_if(is.character,as.numeric)
+
+str(weekone.df)
+
+# calibrate monitoring gas ------------------------------------------------
+
+N.df <- iso.df[c("Row","Identifier 1","Peak Nr","R 29N2/28N2")]
+
+colnames(N.df) <- c("id","name","peak","R15")
+
+N.df <- N.df %>%
+  filter(peak != 1) %>%
+  filter(peak != 2)
+
+N.df$peak <- factor(N.df$peak,levels=c(3,4),labels=c("reference","sample"))
+
+N.df <- N.df %>%
+  drop_na() %>%
+  pivot_wider(names_from=peak,values_from=R15)
+
+N.df <- left_join(N.df,std.df[c("name","type","regression","expected.d15N")]) %>%
+  drop_na()
+
+N.df$d15N.raw <- ((N.df$sample/N.df$reference)-1)*1000
+
+Ncal.df <- N.df %>%
+  filter(type=="Normalization")
+
+N.lm <- lm(`expected.d15N`~d15N.raw,data=Ncal.df)
+N.slope <- N.lm$coefficients[2]
+N.intercept <- N.lm$coefficients[1]
+
+Ncal.df$d15N <- Ncal.df$d15N.raw*N.slope+N.intercept
+Ncal.df$d15N.diff <- Ncal.df$d15N-Ncal.df$expected.d15N
+
+Ncal.df$exp.std.R15 <- Ncal.df$sample/((Ncal.df$d15N/1000)+1)
+
+N.lm <- lm(`exp.std.R15`~reference,data=Ncal.df)
+N.slope <- N.lm$coefficients[2]
+N.intercept <- N.lm$coefficients[1]
+
+N.df$std.R15 <- N.df$reference*N.slope+N.intercept
+
+# calculate d15N ----------------------------------------------------------
+
+N.df$d15N <- ((N.df$sample/N.df$std.R15)-1)*1000
+N.df$d15N.diff <- N.df$d15N-N.df$expected.d15N
+
+N.summary <- N.df %>%
+  filter(type=="Quality Control")%>%
+  group_by(name) %>%
+  summarize(d15N.mean.diff=mean(d15N.diff),
+            d15N.sd=sd(d15N),
+            n=n())
+
+N.summary
+
+# graphing ----------------------------------------------------------------
+
+N.df$regression <- factor(N.df$regression,levels=c(1:3),labels=c("Normalization","Quality Control","Heavy"))
+
+ggplot(,aes(d15N.raw,expected.d15N))+
+  geom_smooth(data=Ncal.df,se=FALSE, method="lm",color="black",size=0.5)+
+  geom_point(data=N.df,aes(fill=regression,shape=regression),color="black")+
+  labs(y=bquote(atop("Expected",delta^15*N~'(‰)')),x=bquote("Observed"~delta^15*N~'(‰)'))+
+  stat_poly_eq(data=Ncal.df,aes(label = paste0("atop(", ..p.value.label.., ",", ..rr.label.., ")")), 
+               formula = y~x, parse = TRUE)+
+  mytheme+
+  theme(legend.position=c(.9,.1))
+
+
+# week one data -----------------------------------------------------------
+
+wk.df <- weekone.df[c("Run","Row","Identifier 1","Peak Nr","R 29N2/28N2")]
+
+colnames(wk.df) <- c("run","id","name","peak","R15")
+
+wk.df <- wk.df %>%
+  filter(peak != 1) %>%
+  filter(peak != 2)
+
+wk.df$peak <- factor(wk.df$peak,levels=c(3,4),labels=c("ref.R15","sample.R15"))
+
+wk.df <- left_join(wk.df,std.df[c("name","expected.d15N")]) %>%
+  drop_na() %>%
+  pivot_wider(names_from=peak,values_from=R15)
+
+wk.df$std.R15 <- wk.df$ref.R15*N.slope+N.intercept
+
+# calculate d15N ----------------------------------------------------------
+
+wk.df$d15N <- ((wk.df$sample.R15/wk.df$std.R15)-1)*1000
+wk.df$d15N.diff <- wk.df$d15N-wk.df$expected.d15N
+
+wk.summary <- wk.df %>%
+  group_by(name) %>%
+  summarize(d15N.mean.diff=mean(d15N.diff),
+            d15N.sd=sd(d15N),
+            n=n())
+
+wk.summary
+

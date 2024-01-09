@@ -1,0 +1,18 @@
+﻿Name,Type,Matrix,d15N.expected,d15N.precision,d13C.expected,d13C.precision
+IAEA600,Normalization,High Organic,1.00,0.20,-27.77,0.04
+USGS40,Normalization,High Organic,-4.52,0.12,-26.39,0.08
+USGS61,Normalization,High Organic,-2.87,0.04,-35.05,0.04
+USGS63,Normalization,High Organic,37.83,0.06,-1.17,0.04
+USGS88,Normalization,High Organic,14.96,0.14,-16.06,0.07
+USGS89,Normalization,High Organic,6.25,0.12,-18.13,0.11
+USGS90,Normalization,Plant,8.84,0.17,-13.75,0.06
+USGS91,Normalization,Plant,1.78,0.12,-28.28,0.08
+Blue Grama,Linearity,Plant,1.60,,-13.40,
+Buckeye,Linearity,Plant,5.10,,-28.9,
+Green Chile Powder,Linearity,Plant,1.88,,-27.71,
+Millet,Linearity,High Organic,8.84,,-13.75,
+Serine,Linearity,High Organic,-5.65,,-22,
+Tuna Muscle,Linearity,High Organic,13.32,,-16.7,
+Casein,Linearity,High Organic,6.43,,-26.52,
+CSI Soil,Linearity,Soil,6.55,,-24.80,
+Reference Gas,Linearity,Reference Gas,0.00,,0.00,

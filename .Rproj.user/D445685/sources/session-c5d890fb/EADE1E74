@@ -1,0 +1,26 @@
+{
+    "id": "EADE1E74",
+    "path": "~/Documents/GitHub/Balint_and_Schwartz_et_al_2024/scripts/normalization/import_normalization_data.R",
+    "project_path": "scripts/normalization/import_normalization_data.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1704825076186.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "165,41",
+        "scrollLine": "159"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1704829933,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1704829933897,
+    "read_only": false,
+    "read_only_alternatives": []
+}
