@@ -5,14 +5,6 @@ Sawyer Balint, Morgan Schwartz, Drew Fowler, Stella Linnekogel, Sáde
 Cromratie Clemons, and Laura K. Burkemper.
 (2024)
 
-<style type="text/css">
-h1.title {text-align:center;}
-h4.author {text-align:center;
-           font-size: 18px;}
-h4.date {text-align:center;
-         font-size: 18px;}
-</style>
-
 This repository contains data for the manuscript “Experimental
 assessment of EAIRMS normalization methodologies for environmental
 stable isotopes” by Sawyer Balint, Morgan Schwartz, Drew Fowler, Stella
