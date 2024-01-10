@@ -1,0 +1,32 @@
+---
+title: "Supplemental information for: Experimental assessment of EAIRMS normalization methodologies for environmental stable isotopes"
+author: "Sawyer Balint, Morgan Schwartz, Drew Fowler, Stella Linnekogel, Sáde Cromratie Clemons, and Laura K. Burkemper."
+date: '(2024)'
+output: github_document
+---
+
+<style type="text/css">
+h1.title {text-align:center;}
+h4.author {text-align:center;
+           font-size: 18px;}
+h4.date {text-align:center;
+         font-size: 18px;}
+</style>
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This repository contains data for the manuscript "Experimental assessment of EAIRMS normalization methodologies for environmental stable isotopes" by Sawyer Balint, Morgan Schwartz, Drew Fowler, Stella Linnekogel, Sáde Cromratie Clemons, and Laura K. Burkemper.
+
+<center><h2>Directory Structure</h2></center>
+
+<h3>/raw</h3> input files containing raw data from the EAIRMS instruments
+<h3>/scripts</h3> R scripts that tidy the raw data, perform isotopic normalization, and generate figures
+<h3>/Rdata</h3> .rds and .Rdata files of tidied and normalized data
+<h3>/export</h3> .csv files of raw and normalized data in several different layouts for readability
+<h3>/figures</h3> .png figures used in the manuscript
+
