@@ -1,9 +1,13 @@
 {
     "sortOrder": [
         {
+            "columnIndex": 3,
+            "ascending": false
+        },
+        {
             "columnIndex": 2,
             "ascending": true
         }
     ],
-    "path": "~/Documents/GitHub/Balint_and_Schwartz_et_al_2024"
+    "path": "~/Documents/GitHub/Balint_and_Schwartz_et_al_2024/export"
 }
