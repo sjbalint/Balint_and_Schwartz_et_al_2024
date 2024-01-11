@@ -61,7 +61,7 @@ ggplot(intermediate.df,aes(x=abs.difference, y=abs.deviation))+
   geom_point(aes(shape=Species.3, fill=Species.3), alpha=0.5,color="black")+
   geom_smooth(method="lm", alpha=0.7, se = FALSE, show.legend=FALSE, color="black")+
   stat_cor(p.accuracy = 0.001, show.legend = FALSE)+
-  labs(x="Isotopic distance between one-point calibrant and standard (‰)",
+  labs(x="Isotopic distance between one-point calibrant and sample (‰)",
        y=expression("Inaccuracy Margin (‰)"))
 
 ggsave(paste0(fig_path,"Fig_S2.png"),width=mywidth, height=myheight)

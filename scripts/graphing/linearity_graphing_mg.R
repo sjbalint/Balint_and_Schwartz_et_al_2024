@@ -39,7 +39,7 @@ mytheme <- list(
 
 plot.df <- iso.df %>%
   filter(Type=="Linearity") %>%
-  select(Name,Matrix,Species,Facility,isotope.raw, mg.diluted) %>%
+  select(Name,Matrix.2,Species,Facility,isotope.raw, mg.diluted) %>%
   group_by(Name,Species,Facility) %>%
   mutate(isotope.deviation = isotope.raw-median(isotope.raw)) %>%
   ungroup()
@@ -49,9 +49,10 @@ plot.df <- plot.df %>%
                           levels=c("N","C"),
                           labels=c("Nitrogen (mg)",
                                   "Carbon (mg after dilution)")),
-         Facility=paste0(Facility,"\nLinearity Effect (‰)"))
+         Facility=paste0(Facility,"\nLinearity Effect (‰)"),
+         Matrix.2=factor(Matrix.2, levels=c("Reference Gas","High organic","Plant","Soil")))
 
-ggplot(plot.df,aes(mg.diluted,isotope.deviation,fill=Matrix,shape=Matrix))+
+ggplot(plot.df,aes(mg.diluted,isotope.deviation,fill=Matrix.2,shape=Matrix.2))+
   mytheme+
   facet_grid(Facility~Species, switch="both", scales="free_x")
 
@@ -62,7 +63,8 @@ ggsave(paste0(fig_path,"Fig_6.png"), width=mywidth, height=myheight)
 
 plot.df <- iso.df %>%
   filter(Type=="Linearity") %>%
-  select(Name,Weight.mg,mg, Amplitude,Matrix,Species,Facility,isotope.raw) %>%
+  filter(Matrix.2!="Reference Gas") %>%
+  select(Name,Weight.mg,mg, Amplitude,Matrix.2,Species,Facility,isotope.raw) %>%
   mutate(relative.amplitude = Amplitude/Weight.mg) %>%
   group_by(Name,Species,Facility) %>%
   mutate(isotope.deviation = isotope.raw-median(isotope.raw),
@@ -76,11 +78,11 @@ plot.df <- plot.df %>%
                                  "Carbon (mg)")),
          Facility=paste0(Facility,"\nMajor Amplitude / Weight"))
 
-ggplot(plot.df, aes(mg,amplitude.deviation,fill=Matrix,shape=Matrix))+
+ggplot(plot.df, aes(mg,amplitude.deviation,fill=Matrix.2,shape=Matrix.2))+
   mytheme+
   facet_grid(Facility~Species, switch="both", scales="free_x")
 
-ggsave(paste0(fig_path,"Fig_S3.png"), width=mywidth, height=myheight)
+ggsave(paste0(fig_path,"Fig_S4.png"), width=mywidth, height=myheight)
 
 
 

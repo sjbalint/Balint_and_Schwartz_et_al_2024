@@ -11,7 +11,7 @@ library(progress) #for progress bar
 
 #load raw combined data
 iso.df <- readRDS("Rdata/raw_data.rds")%>%
-  select(IRMS.ID,Name,Weight.mg, Species,Facility,Type,Matrix,isotope.raw,isotope.expected, isotope.precision)
+  select(IRMS.ID,Name,Weight.mg,Species,Facility,Type,Matrix.1,Matrix.2,isotope.raw,isotope.expected, isotope.precision)
 
 # figure out all of the possible normalization combinations ---------------
 
@@ -167,7 +167,7 @@ pb$terminate()
 results.df <- bind_rows(results.list)
 
 sample_data.df <- iso.df %>%
-  select(Name, Type, Matrix, Species, isotope.expected, isotope.precision) %>%
+  select(Name, Type, Matrix.1, Matrix.2, Species, isotope.expected, isotope.precision) %>%
   unique()
 
 results.df <- full_join(sample_data.df, results.df) %>%
@@ -179,55 +179,47 @@ results.df$SRM_logical <- mapply(grepl, results.df$Name, results.df$standards)
 
 results.df <- results.df %>%
   mutate(Type=ifelse(SRM_logical,"SRM",
-                     ifelse(Type=="Linearity",NA, "QC"))) %>%
+                     ifelse(Type=="Linearity",NA,"QC"))) %>%
   select(-c("SRM_logical"))
-
-intermediate.df <- results.df %>%
-  filter(Type=="QC")
 
 # assess matrix -----------------------------------------------------------
 
-norm.list <- results.df %>%
-  pull(Normalization) %>%
-  unique()
-
-SRM_matrix.df <- results.df %>%
+matrix.df <- results.df %>%
+  drop_na(Type) %>%
   filter(Type=="SRM") %>%
-  select(Matrix,Normalization) %>%
-  unique() %>%
-  arrange(Normalization)
+  group_by(Normalization) %>%
+  summarise(SRM.matrix.1 = ifelse(length(unique(Matrix.1))==1,
+                                  paste(unique(Matrix.1), collapse = "/"),
+                                  "Mixed"),
+            SRM.matrix.2 = ifelse(length(unique(Matrix.2))==1,
+                                  paste(unique(Matrix.2), collapse = "/"),
+                                  "Mixed"),) %>%
+  ungroup()
 
-results.list <- list()
+matrix.df %>%
+  count(SRM.matrix.1)
 
-for (norm in norm.list){
-  temp.df <- SRM_matrix.df %>%
-    filter(Normalization==norm)
-  
-  if (nrow(temp.df)==1){
-    temp.df$SRM.matrix <- temp.df$Matrix
-  } else {
-    temp.df$SRM.matrix <- "Mixed"
-  }
-  
-  results.list <- append(results.list,list(temp.df))
-}
+matrix.df %>%
+  count(SRM.matrix.2)
 
-SRM_matrix.df <- bind_rows(results.list) %>%
-  select(-Matrix) %>%
-  unique()
+normalizations.df <- left_join(results.df,matrix.df) %>%
+  rename("QC.matrix.1"="Matrix.1",
+         "QC.matrix.2"="Matrix.2")
 
-SRM_matrix.df %>%
-  count(SRM.matrix)
+matrix.df <- normalizations.df %>%
+  filter(Type=="QC") %>%
+  mutate(Matrix.1=ifelse(QC.matrix.1==SRM.matrix.1,
+                  "Matched",paste(SRM.matrix.1,"/",QC.matrix.1)),
+         Matrix.2=ifelse(QC.matrix.2==SRM.matrix.2,
+                         "Matched",paste(SRM.matrix.2,"/",QC.matrix.2)))
 
-normalizations.df <- left_join(results.df,SRM_matrix.df)
+normalizations.df <- left_join(normalizations.df, matrix.df)
 
-normalizations.df <- normalizations.df %>%
-  mutate(QC.matrix=Matrix,
-    Matrix=ifelse(QC.matrix=="High Organic"&SRM.matrix=="High Organic","Matched",
-                     ifelse(QC.matrix=="Plant"&SRM.matrix=="Plant","Matched",
-                            ifelse(QC.matrix=="Mixed"&SRM.matrix=="Mixed","Both Mixed",
-                                   "Mixed"))),
-    Matrix=ifelse(SRM.matrix=="Mixed", NA, Matrix))
+normalizations.df %>%
+  count(Matrix.1)
+
+normalizations.df %>%
+  count(Matrix.2)
 
 # determine extrapolation -------------------------------------------------
 

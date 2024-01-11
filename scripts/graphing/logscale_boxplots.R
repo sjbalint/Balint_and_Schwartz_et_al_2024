@@ -11,6 +11,7 @@ library(scales) #for psuedo_log
 library(patchwork) #for combining plots
 library(grid) #for adding annotations
 library(ggsci) #for colors
+library(ggrepel) #for geom_text_repel
 
 # import data -------------------------------------------------------------
 
@@ -160,7 +161,7 @@ make_bar <- function(plot.df, x){
     #scale_x_discrete(expand=expansion(mult=c(0.4,0.42)))
 }
 
-make_boxplot <- function(plot.df, x){
+make_boxplot <- function(plot.df, x, median_vjust=-0.7){
   
   stat.test <- plot.df %>%
     group_by(Species.3) %>%
@@ -168,9 +169,15 @@ make_boxplot <- function(plot.df, x){
     mutate(comparison=paste0(group1,"-",group2),
            p.adj=p.adj)
   
-  print(stat.test)
+  stat.test %>%
+    select(Species.3,group1,group2,n1,n2,p.adj) %>%
+    print()
   
   cld.df <- create_cld(plot.df,stat.test,x)
+  
+  cld.df %>%
+    select(all_of(c("Group","Species.3",x,"median.label"))) %>%
+    print()
   
   percent.df <- plot.df %>%
     group_by_at(c("Species.3", x)) %>%
@@ -198,7 +205,7 @@ make_boxplot <- function(plot.df, x){
     scale_y_log10(limits=c(0.001,10), breaks=labels,labels=labels)+
     labs(y=paste("Inaccuracy Margin (‰)"))+
     geom_text(color="black", data = cld.df, aes(y=median,label=median.label),
-              size = 3, vjust = -0.7, position=position_dodge(width=-0.75))+
+              size = 3, position=position_dodge(width=-0.75), vjust = median_vjust)+
     geom_text(color="black", data=cld.df,aes(label=Letter,y=upper_hinge),
               position = position_dodge(width=-1.6), hjust=0.5, vjust=-1)
   
@@ -208,7 +215,7 @@ make_boxplot <- function(plot.df, x){
 }
 
 make_plot <- function(plot.df, x, label=NULL, xlab=NULL, label.position="left", 
-                      xaxis=TRUE, yaxis=TRUE, show.legend=TRUE){
+                      xaxis=TRUE, yaxis=TRUE, show.legend=TRUE, median_vjust=-0.7){
   
   remove_y_axis <- function(plot){
     plot <- plot+
@@ -220,7 +227,7 @@ make_plot <- function(plot.df, x, label=NULL, xlab=NULL, label.position="left",
     return(plot)
   }
   
-  p1 <- make_boxplot(plot.df, x)
+  p1 <- make_boxplot(plot.df, x, median_vjust=median_vjust)
   
   p2 <- make_bar(plot.df, x)+
     labs(x=xlab)
@@ -269,15 +276,15 @@ make_plot <- function(plot.df, x, label=NULL, xlab=NULL, label.position="left",
 # plot isotopic range of standards ----------------------------------------
 
 plot.df <- raw_data.df %>%
-  select(Name, Type, Matrix, Species, isotope.expected, isotope.precision) %>%
+  select(Name, Type, Matrix.2, Species, isotope.expected, isotope.precision) %>%
   unique() %>%
   pivot_wider(names_from="Species", values_from=c("isotope.expected", "isotope.precision")) %>%
   drop_na(Type) %>%
-  filter(Matrix!="Reference Gas")
+  filter(Matrix.2!="Reference Gas")
 
 
 ggplot(plot.df,aes(x=isotope.expected_C,y=isotope.expected_N,
-                   shape=Type,fill=Matrix,label=Name))+
+                   shape=Type,fill=Matrix.2,label=Name))+
   basetheme+
   theme(panel.grid.major.x=element_line(color="grey", linewidth=0.1),
         legend.position=c(0.2, 0.7))+
@@ -288,7 +295,8 @@ ggplot(plot.df,aes(x=isotope.expected_C,y=isotope.expected_N,
                    ymax=isotope.expected_N+isotope.precision_N,))+
   geom_text_repel(fill="white",point.padding=5, size=2)+
   labs(y=bquote(delta^15*N~'(‰)'),
-      x=bquote(delta^13*C~'(‰)'))
+      x=bquote(delta^13*C~'(‰)'),
+      fill="Matrix")
 
 ggsave(paste0(fig_path,"Fig_S1.png"),width=mywidth, height=myheight)
 
@@ -319,7 +327,7 @@ p2 <- make_plot(plot.df, x, label, label.position="right",
 mylegend <- get_legend(make_boxplot(plot.df, x))
 
 p3 <- plot_grid(p1, p2, nrow = 1, align="vh", axis="tblr", rel_widths=c(1,0.9),
-                labels="AUTO", label_x=0.12, label_y=0.93) #configure labels for the subplots
+                labels="AUTO", label_x=0.12, label_y=0.98) #configure labels for the subplots
 
 plot_grid(mylegend,p3,nrow=2,rel_heights=c(0.1,2))
 
@@ -328,34 +336,56 @@ ggsave(paste0(fig_path,"Fig_2.png"),width=mywidth*2, height=myheight)
 # matrix ------------------------------------------------------------------
 
 plot.df <- intermediate.df %>%
-  drop_na(Matrix) %>%
-  filter(isotope.range>20)%>%
-  filter(Method=="three.point") %>%
-  filter(Extrapolation=="Interpolated")%>%
-  mutate(Matrix <- factor(Matrix,levels=c("Matched","Mixed")))
+  filter(Method=="three.point",
+         Extrapolation=="Interpolated",
+         isotope.range>20) %>%
+  mutate(Matrix.3=ifelse(Matrix.2=="Matched",Matrix.2, "Mixed"))
 
-x="Matrix"
+x="Matrix.3"
 
 label <- "Isotopic Range > 20‰\nThree Point\nInterpolated"
 
-make_plot(plot.df, x, label)
+make_plot(plot.df, x, label, median_vjust=-1)
 
 ggsave(paste0(fig_path,"Fig_3.png"),width=mywidth, height=myheight)
+
+
+# matrix figure for SIs ---------------------------------------------------
+
+plot.df <- intermediate.df %>%
+  filter(Method=="three.point",
+         Extrapolation=="Interpolated",
+         isotope.range>20
+         ) %>%
+  mutate(
+    Matrix.1=gsub(" / ", "\n", Matrix.1),
+    Matrix.1=factor(Matrix.1,
+    levels=c("Matched","Compound\nMacromolecule","Mixed\nCompound",
+             "Mixed\nMacromolecule","Mixed\nPlant","Compound\nPlant")))
+
+x="Matrix.1"
+
+label <- "Isotopic Range > 20‰\nThree Point\nInterpolated"
+
+make_plot(plot.df, x, label,
+          xlab="Reference Material Matrix\nQuality Control Matrix")
+
+ggsave(paste0(fig_path,"Fig_S3.png"),width=mywidth*2, height=myheight)
+
 
 # extrapolation -----------------------------------------------------------
 
 plot.df <- intermediate.df %>%
   filter(isotope.range>20)%>%
   filter(Method=="three.point") %>%
-  filter(Matrix!="Mixed") %>%
+  filter(Matrix.2=="Matched") %>%
   mutate(Extrapolation=factor(Extrapolation, levels=c("Interpolated", "Extrapolated")))
 
 x="Extrapolation"
 
 label <- "Isotopic Range > 20‰\nThree Point\nMatrix Matched"
 
-p1 <- make_plot(plot.df, x, label, show.legend=FALSE)
-make_plot(plot.df, x, label)
+make_plot(plot.df, x, label, median_vjust=1.5)
 
 ggsave(paste0(fig_path,"Fig_4.png"),width=mywidth, height=myheight)
 
@@ -382,26 +412,28 @@ p2 <- make_plot(plot.df, x, label, label.position="right",
 
 plot.df <- intermediate.df %>%
   filter(Method=="three.point") %>%
-  #filter(Matrix!="Matched") %>%
   filter(Extrapolation=="Extrapolated")
 
 label <- "Three Point\nExtrapolated"
 
 p3 <- make_plot(plot.df, x, label, label.position="left",
-                xlab="Isotopic Range (‰)",show.legend=FALSE)
+                xlab="Isotopic Range (‰)",show.legend=FALSE, median_vjust=-0.5)
 
 plot.df <- intermediate.df %>%
   filter(Method=="two.point") %>%
-  #filter(Matrix!="Matched") %>%
   filter(Extrapolation=="Extrapolated")
 
 label <- "Two Point\nExtrapolated"
 
 p4 <- make_plot(plot.df, x, label, yaxis=FALSE, xlab="Isotopic Range (‰)",
-                label.position="right", show.legend=FALSE)
+                label.position="right", show.legend=FALSE, median_vjust=-0.5)
 
 mylegend <- get_legend(make_boxplot(plot.df, x))
 
-plot_grid(mylegend,p1 + p2, p3 + p4, nrow=3, rel_heights=c(0.1,2, 2.3))
+plot <- plot_grid(p1, p2, p3, p4, nrow = 2, align="vh", axis="tblr",
+                rel_widths=c(1,0.9, 1, 0.9), rel_heights=c(1,1, 0.9, 0.9),
+                labels="AUTO", label_x=0.15, label_y=0.95) #configure labels for the subplots
+
+plot_grid(mylegend,plot, nrow=2, rel_heights=c(0.1,2))
 
 ggsave(paste0(fig_path,"Fig_5.png"),width=mywidth*1.5, height=myheight*1.5)

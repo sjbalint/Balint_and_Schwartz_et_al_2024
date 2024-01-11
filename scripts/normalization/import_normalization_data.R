@@ -13,8 +13,6 @@ samples.df <- read.csv('raw/input_data.csv') %>% #import sample data
   drop_na(expected) %>% #remove any samples that don't have an expected value (aka blanks)
   rename("isotope.expected"="expected", "isotope.precision"="precision")
 
-samples.df$Matrix <- factor(samples.df$Matrix,levels=c("Reference Gas","High Organic","Plant","Soil"))
-
 samples.df$Species <- factor(samples.df$Species,levels=c("d15N","d13C"),labels=c("N","C")) #convert species column to factor
 
 samples.df <- samples.df[c(1:3,ncol(samples.df)-1,ncol(samples.df),6:ncol(samples.df)-2)] #reorganize the dataframe
@@ -86,7 +84,8 @@ mg.df <- epa.df %>%
   pivot_longer(c("N.pct","C.pct"),names_to="Species",values_to="percent") %>%
   mutate(Species=factor(Species,levels=c("N.pct","C.pct"),labels=c("N","C"))) %>%
   group_by(sample.id, Species) %>%
-  summarize_all(mean, na.rm=TRUE) %>%
+  summarize(percent.mean = mean(percent, na.rm=TRUE),
+            percent.95CI = diff(t.test(percent,conf.level = 0.95)$conf.int)/2) %>%
   ungroup() %>%
   rename("Name"="sample.id")
 
@@ -169,20 +168,32 @@ iso.df <- left_join(iso.df,samples.df)
 
 iso.df <- left_join(iso.df, mg.df)
 
-str(iso.df) #check data structure
+# calculate 95%CI for raw data --------------------------------------------
 
+CI95.df <- iso.df %>%
+  filter(Type!="Reference Gas",
+         Name != "Reference Gas") %>%
+  group_by(Name, Species, Facility) %>%
+  summarize(isotope.raw.95CI = diff(t.test(isotope.raw,conf.level = 0.95)$conf.int)/2) %>%
+  group_by(Name, Species) %>%
+  summarize(isotope.raw.95CI = mean(isotope.raw.95CI, na.rm=TRUE)) %>%
+  ungroup()
+
+iso.df <- left_join(iso.df, CI95.df)
+
+str(iso.df) #check data structure
 
 # estimate mg equivalent for working gas linearity ------------------------
 
 iso.df <- iso.df %>%
-  mutate(mg=Weight.mg*(percent/100),
+  mutate(mg=Weight.mg*(percent.mean/100),
          mg.diluted=ifelse(Species=="C",mg*((100-dilution)/100),mg)
          ) %>%
   group_by(Facility, Species) %>%
   mutate(intercept=coefficients(lm(mg.diluted~Amplitude))[1],
          slope=coefficients(lm(mg.diluted~Amplitude))[2]) %>%
   ungroup() %>%
-  mutate(mg.diluted=ifelse(Matrix=="Reference Gas",
+  mutate(mg.diluted=ifelse(Matrix.1=="Reference Gas",
                    Amplitude*slope+intercept,
                    mg.diluted)) %>%
   select(-c(slope, intercept))
@@ -205,7 +216,7 @@ saveRDS(iso.df,file="Rdata/raw_data.rds")
 # summarize the raw data --------------------------------------------------
 
 iso.df <- iso.df%>%
-  select(IRMS.ID,Name,Species,Facility,Type,Matrix,isotope.raw,isotope.expected) %>%
+  select(IRMS.ID,Name,Species,Facility,Type,Matrix.1, Matrix.2,isotope.raw,isotope.expected) %>%
   arrange(Species,Facility,Name)
 
 #export the raw data as a csv for external assessment
