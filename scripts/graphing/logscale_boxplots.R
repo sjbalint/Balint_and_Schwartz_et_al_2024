@@ -370,7 +370,7 @@ label <- "Isotopic Range > 20‰\nThree Point\nInterpolated"
 make_plot(plot.df, x, label,
           xlab="Reference Material Matrix\nQuality Control Matrix")
 
-ggsave(paste0(fig_path,"Fig_S3.png"),width=mywidth*2, height=myheight)
+ggsave(paste0(fig_path,"Fig_S3.pdf"),width=mywidth*2, height=myheight)
 
 
 # extrapolation -----------------------------------------------------------
@@ -436,4 +436,4 @@ plot <- plot_grid(p1, p2, p3, p4, nrow = 2, align="vh", axis="tblr",
 
 plot_grid(mylegend,plot, nrow=2, rel_heights=c(0.1,2))
 
-ggsave(paste0(fig_path,"Fig_5.png"),width=mywidth*1.5, height=myheight*1.5)
+ggsave(paste0(fig_path,"Fig_5.pdf"),width=mywidth*1.5, height=myheight*1.5)

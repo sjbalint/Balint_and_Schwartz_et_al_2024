@@ -20,7 +20,8 @@ intermediate.df <- normalizations.df %>%
          Species.3 = factor(Species,
                              levels=c("N","C"),
                              labels=c("Nitrogen",
-                                      "Carbon")))
+                                      "Carbon")),
+         Matrix.3=ifelse(Matrix.2=="Matched","Matrix Matched","Matrix Mixed"))
 
 # configure graphing ------------------------------------------------------
 
@@ -60,7 +61,9 @@ ggplot(intermediate.df,aes(x=abs.difference, y=abs.deviation))+
   basetheme+
   geom_point(aes(shape=Species.3, fill=Species.3), alpha=0.5,color="black")+
   geom_smooth(method="lm", alpha=0.7, se = FALSE, show.legend=FALSE, color="black")+
-  stat_cor(p.accuracy = 0.001, show.legend = FALSE)+
+  facet_wrap(.~Matrix.3, nrow=2)+
+  stat_cor(aes(label = paste(..rr.label.., ..p.label.., sep = "~`,`~")),
+               p.accuracy = 0.001, show.legend = FALSE)+
   labs(x="Isotopic distance between one-point calibrant and sample (‰)",
        y=expression("Inaccuracy Margin (‰)"))
 

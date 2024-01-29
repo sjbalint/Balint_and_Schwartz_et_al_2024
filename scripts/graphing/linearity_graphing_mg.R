@@ -50,7 +50,7 @@ plot.df <- plot.df %>%
                           labels=c("Nitrogen (mg)",
                                   "Carbon (mg after dilution)")),
          Facility=paste0(Facility,"\nLinearity Effect (‰)"),
-         Matrix.2=factor(Matrix.2, levels=c("Reference Gas","High organic","Plant","Soil")))
+         Matrix.2=factor(Matrix.2, levels=c("Reference Gas","High Organic","Plant","Soil")))
 
 ggplot(plot.df,aes(mg.diluted,isotope.deviation,fill=Matrix.2,shape=Matrix.2))+
   mytheme+
@@ -63,12 +63,13 @@ ggsave(paste0(fig_path,"Fig_6.png"), width=mywidth, height=myheight)
 
 plot.df <- iso.df %>%
   filter(Type=="Linearity") %>%
-  filter(Matrix.2!="Reference Gas") %>%
+  #filter(Matrix.2!="Reference Gas") %>%
   select(Name,Weight.mg,mg, Amplitude,Matrix.2,Species,Facility,isotope.raw) %>%
   mutate(relative.amplitude = Amplitude/Weight.mg) %>%
   group_by(Name,Species,Facility) %>%
   mutate(isotope.deviation = isotope.raw-median(isotope.raw),
-         amplitude.deviation = relative.amplitude-median(relative.amplitude)) %>%
+         amplitude.deviation = relative.amplitude-median(relative.amplitude),
+         Matrix.2=factor(Matrix.2, levels=c("Reference Gas","High Organic","Plant","Soil"))) %>%
   ungroup()
 
 plot.df <- plot.df %>%
