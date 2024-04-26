@@ -65,6 +65,6 @@ ggplot(intermediate.df,aes(x=abs.difference, y=abs.deviation))+
   stat_cor(aes(label = paste(..rr.label.., ..p.label.., sep = "~`,`~")),
                p.accuracy = 0.001, show.legend = FALSE)+
   labs(x="Isotopic distance between one-point calibrant and sample (‰)",
-       y=expression("Inaccuracy Margin (‰)"))
+       y=expression("Deviation from certified value (‰)"))
 
 ggsave(paste0(fig_path,"Fig_S2.png"),width=mywidth, height=myheight)

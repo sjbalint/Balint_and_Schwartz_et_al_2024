@@ -58,6 +58,6 @@ ggplot(intermediate.df, aes(abs.deviation, fill=Species.3))+
   geom_histogram(alpha=0.5, bins=15, position = "identity", color="black")+
   facet_wrap(~Name, ncol=2, scales="free_y")+
   scale_x_log10(limits=c(0.001,10),breaks=labels,labels=labels)+
-  labs(y="Count", x="Inaccuracy Margin (‰)")
+  labs(y="Count", x="Deviation from certified value (‰)")
 
 ggsave(paste0(fig_path,"Fig_1.png"), width=mywidth, height=myheight)

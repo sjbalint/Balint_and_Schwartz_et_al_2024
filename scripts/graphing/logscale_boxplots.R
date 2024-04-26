@@ -137,7 +137,7 @@ create_cld <- function(plot.df,stat.test,x){
   return (cld.df)
 }
 
-make_bar <- function(plot.df, x){
+make_bar <- function(plot.df, x, percent=TRUE){
   
   percent.df <- plot.df %>%
     group_by_at(c("Species.3", x)) %>%
@@ -148,6 +148,12 @@ make_bar <- function(plot.df, x){
            percentage=ifelse(is.na(percentage),0, percentage)) %>%
     filter(deviation_significant=="Significant")
   
+  if (percent){
+    percent.df$label <- paste0(percent.df$percentage,"%")
+  } else {
+    percent.df$label <- paste0(percent.df$n," / ", percent.df$sum)
+  }
+  
   p1 <- ggplot(percent.df, aes(x=get(x), y=percentage, fill=Species.3, group=interaction(get(x), Species.3))) +
     geom_text(color="white", data=percent.df,aes(label="X",y=25),
               position = position_dodge(width=-1.6), hjust=0.5)+
@@ -156,7 +162,7 @@ make_bar <- function(plot.df, x){
     theme(legend.position="none")+
     labs(y="% Signif.")+
     scale_y_continuous(limits=c(0,100), breaks=c(0,50, 100))+
-    geom_text(color="black", data=percent.df,aes(label=paste0(percentage,"%"),y=percentage),
+    geom_text(color="black", data=percent.df,aes(label=label, y=percentage),
               size = 3, position = position_dodge(width=0.75), vjust=-1)
     #scale_x_discrete(expand=expansion(mult=c(0.4,0.42)))
 }
@@ -203,7 +209,7 @@ make_boxplot <- function(plot.df, x, median_vjust=-0.7){
       axis.line.x = element_blank(),
       axis.ticks.x = element_blank())+
     scale_y_log10(limits=c(0.001,10), breaks=labels,labels=labels)+
-    labs(y=paste("Inaccuracy Margin (‰)"))+
+    labs(y=paste("Deviation from certified value (‰)"))+
     geom_text(color="black", data = cld.df, aes(y=median,label=median.label),
               size = 3, position=position_dodge(width=-0.75), vjust = median_vjust)+
     geom_text(color="black", data=cld.df,aes(label=Letter,y=upper_hinge),
@@ -215,7 +221,8 @@ make_boxplot <- function(plot.df, x, median_vjust=-0.7){
 }
 
 make_plot <- function(plot.df, x, label=NULL, xlab=NULL, label.position="left", 
-                      xaxis=TRUE, yaxis=TRUE, show.legend=TRUE, median_vjust=-0.7){
+                      xaxis=TRUE, yaxis=TRUE, show.legend=TRUE, median_vjust=-0.7,
+                      percent.label=TRUE){
   
   remove_y_axis <- function(plot){
     plot <- plot+
@@ -229,7 +236,7 @@ make_plot <- function(plot.df, x, label=NULL, xlab=NULL, label.position="left",
   
   p1 <- make_boxplot(plot.df, x, median_vjust=median_vjust)
   
-  p2 <- make_bar(plot.df, x)+
+  p2 <- make_bar(plot.df, x, percent=percent.label)+
     labs(x=xlab)
   
   if (label.position=="left"){
@@ -312,6 +319,9 @@ label <- "Isotopic Range > 20‰"
 
 p1 <- make_plot(plot.df, x, label, xlab="Number of Reference Materials", show.legend=FALSE)
 
+p1b <- make_plot(plot.df, x, label, xlab="Number of Reference Materials", show.legend=FALSE,
+                percent.label=FALSE)
+
 # normalization method comparison in poor cases ---------------------------
 
 plot.df <- intermediate.df %>%
@@ -320,6 +330,9 @@ plot.df <- intermediate.df %>%
 label <- "Isotopic Range < 20‰"
 
 p2 <- make_plot(plot.df, x, label, label.position="right", 
+                xlab="Number of Reference Materials", yaxis=FALSE, show.legend=FALSE)
+
+p2b <- make_plot(plot.df, x, label, label.position="right", percent.label=FALSE,
                 xlab="Number of Reference Materials", yaxis=FALSE, show.legend=FALSE)
 
 # combined plot -----------------------------------------------------------
@@ -332,6 +345,13 @@ p3 <- plot_grid(p1, p2, nrow = 1, align="vh", axis="tblr", rel_widths=c(1,0.9),
 plot_grid(mylegend,p3,nrow=2,rel_heights=c(0.1,2))
 
 ggsave(paste0(fig_path,"Fig_2.png"),width=mywidth*2, height=myheight)
+
+p4 <- plot_grid(p1b, p2b, nrow = 1, align="vh", axis="tblr", rel_widths=c(1,0.9),
+                labels="AUTO", label_x=0.12, label_y=0.98) #configure labels for the subplots
+
+plot_grid(mylegend,p4,nrow=2,rel_heights=c(0.1,2))
+
+ggsave(paste0(fig_path,"Fig_S3.png"),width=mywidth*2, height=myheight)
 
 # matrix ------------------------------------------------------------------
 
@@ -370,7 +390,7 @@ label <- "Isotopic Range > 20‰\nThree Point\nInterpolated"
 make_plot(plot.df, x, label,
           xlab="Reference Material Matrix\nQuality Control Matrix")
 
-ggsave(paste0(fig_path,"Fig_S3.pdf"),width=mywidth*2, height=myheight)
+ggsave(paste0(fig_path,"Fig_S4.svg"),width=mywidth*2, height=myheight)
 
 
 # extrapolation -----------------------------------------------------------
@@ -436,4 +456,4 @@ plot <- plot_grid(p1, p2, p3, p4, nrow = 2, align="vh", axis="tblr",
 
 plot_grid(mylegend,plot, nrow=2, rel_heights=c(0.1,2))
 
-ggsave(paste0(fig_path,"Fig_5.pdf"),width=mywidth*1.5, height=myheight*1.5)
+ggsave(paste0(fig_path,"Fig_5.svg"),width=mywidth*1.5, height=myheight*1.5)
