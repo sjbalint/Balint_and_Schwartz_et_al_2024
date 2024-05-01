@@ -392,7 +392,6 @@ make_plot(plot.df, x, label,
 
 ggsave(paste0(fig_path,"Fig_S4.svg"),width=mywidth*2, height=myheight)
 
-
 # extrapolation -----------------------------------------------------------
 
 plot.df <- intermediate.df %>%

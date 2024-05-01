@@ -1,8 +1,8 @@
 ﻿Name,Type,Matrix.1,Matrix.2,d15N.expected,d15N.precision,d13C.expected,d13C.precision
-IAEA600,Normalization,Compound,High Organic,1,0.2,-27.77,0.04
+IAEA600,Normalization,Compound,High Organic,1.02,0.09,-27.73,0.07
 USGS40,Normalization,Compound,High Organic,-4.52,0.12,-26.39,0.08
-USGS61,Normalization,Compound,High Organic,-2.87,0.04,-35.05,0.04
-USGS63,Normalization,Compound,High Organic,37.83,0.06,-1.17,0.04
+USGS61,Normalization,Compound,High Organic,-2.87,0.08,-35.05,0.08
+USGS63,Normalization,Compound,High Organic,37.83,0.11,-1.17,0.08
 USGS88,Normalization,Macromolecule,High Organic,14.96,0.14,-16.06,0.07
 USGS89,Normalization,Macromolecule,High Organic,6.25,0.12,-18.13,0.11
 USGS90,Normalization,Plant,Plant,8.84,0.17,-13.75,0.06

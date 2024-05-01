@@ -22,10 +22,10 @@
 "34","CSI Casein","C","UNM CSI","Linearity","High Organic","High Organic",-25.564,-26.52
 "35","CSI Casein","C","UNM CSI","Linearity","High Organic","High Organic",-25.603,-26.52
 "23","CSI Casein micro loop","C","UNM CSI",NA,NA,NA,-25.478,NA
-"38","IAEA600","C","UNM CSI","Normalization","Compound","High Organic",-26.694,-27.77
-"44","IAEA600","C","UNM CSI","Normalization","Compound","High Organic",-26.758,-27.77
-"50","IAEA600","C","UNM CSI","Normalization","Compound","High Organic",-26.731,-27.77
-"56","IAEA600","C","UNM CSI","Normalization","Compound","High Organic",-26.631,-27.77
+"38","IAEA600","C","UNM CSI","Normalization","Compound","High Organic",-26.694,-27.73
+"44","IAEA600","C","UNM CSI","Normalization","Compound","High Organic",-26.758,-27.73
+"50","IAEA600","C","UNM CSI","Normalization","Compound","High Organic",-26.731,-27.73
+"56","IAEA600","C","UNM CSI","Normalization","Compound","High Organic",-26.631,-27.73
 "39","USGS40","C","UNM CSI","Normalization","Compound","High Organic",-25.242,-26.39
 "45","USGS40","C","UNM CSI","Normalization","Compound","High Organic",-25.292,-26.39
 "51","USGS40","C","UNM CSI","Normalization","Compound","High Organic",-25.324,-26.39
@@ -104,10 +104,10 @@
 "20852","CSI Tuna","C","U.S. EPA","Linearity","High Organic","High Organic",-17.09,-16.7
 "20850","CSI Tuna","C","U.S. EPA","Linearity","High Organic","High Organic",-17.33,-16.7
 "20843","CSI Tuna","C","U.S. EPA","Linearity","High Organic","High Organic",-17.37,-16.7
-"20857","IAEA600","C","U.S. EPA","Normalization","Compound","High Organic",-27.89,-27.77
-"20860","IAEA600","C","U.S. EPA","Normalization","Compound","High Organic",-27.96,-27.77
-"20863","IAEA600","C","U.S. EPA","Normalization","Compound","High Organic",-27.93,-27.77
-"20866","IAEA600","C","U.S. EPA","Normalization","Compound","High Organic",-27.97,-27.77
+"20857","IAEA600","C","U.S. EPA","Normalization","Compound","High Organic",-27.89,-27.73
+"20860","IAEA600","C","U.S. EPA","Normalization","Compound","High Organic",-27.96,-27.73
+"20863","IAEA600","C","U.S. EPA","Normalization","Compound","High Organic",-27.93,-27.73
+"20866","IAEA600","C","U.S. EPA","Normalization","Compound","High Organic",-27.97,-27.73
 "1_wg","Reference Gas","C","U.S. EPA","Linearity","Reference Gas","Reference Gas",0.116640050056745,0
 "2_wg","Reference Gas","C","U.S. EPA","Linearity","Reference Gas","Reference Gas",0.041437195221089,0
 "3_wg","Reference Gas","C","U.S. EPA","Linearity","Reference Gas","Reference Gas",-0.0586224690072139,0
@@ -169,10 +169,10 @@
 "34","CSI Casein","N","UNM CSI","Linearity","High Organic","High Organic",6.465,6.43
 "35","CSI Casein","N","UNM CSI","Linearity","High Organic","High Organic",6.537,6.43
 "23","CSI Casein micro loop","N","UNM CSI",NA,NA,NA,6.081,NA
-"38","IAEA600","N","UNM CSI","Normalization","Compound","High Organic",0.941,1
-"44","IAEA600","N","UNM CSI","Normalization","Compound","High Organic",1.077,1
-"50","IAEA600","N","UNM CSI","Normalization","Compound","High Organic",0.906,1
-"56","IAEA600","N","UNM CSI","Normalization","Compound","High Organic",1.09,1
+"38","IAEA600","N","UNM CSI","Normalization","Compound","High Organic",0.941,1.02
+"44","IAEA600","N","UNM CSI","Normalization","Compound","High Organic",1.077,1.02
+"50","IAEA600","N","UNM CSI","Normalization","Compound","High Organic",0.906,1.02
+"56","IAEA600","N","UNM CSI","Normalization","Compound","High Organic",1.09,1.02
 "1_wg","Reference Gas","N","UNM CSI","Linearity","Reference Gas","Reference Gas",-1.211,0
 "2_wg","Reference Gas","N","UNM CSI","Linearity","Reference Gas","Reference Gas",-1.25,0
 "3_wg","Reference Gas","N","UNM CSI","Linearity","Reference Gas","Reference Gas",-1.283,0
@@ -259,10 +259,10 @@
 "20852","CSI Tuna","N","U.S. EPA","Linearity","High Organic","High Organic",13.34,13.32
 "20850","CSI Tuna","N","U.S. EPA","Linearity","High Organic","High Organic",13.43,13.32
 "20843","CSI Tuna","N","U.S. EPA","Linearity","High Organic","High Organic",13.33,13.32
-"20857","IAEA600","N","U.S. EPA","Normalization","Compound","High Organic",0.86,1
-"20860","IAEA600","N","U.S. EPA","Normalization","Compound","High Organic",0.9,1
-"20863","IAEA600","N","U.S. EPA","Normalization","Compound","High Organic",0.83,1
-"20866","IAEA600","N","U.S. EPA","Normalization","Compound","High Organic",0.89,1
+"20857","IAEA600","N","U.S. EPA","Normalization","Compound","High Organic",0.86,1.02
+"20860","IAEA600","N","U.S. EPA","Normalization","Compound","High Organic",0.9,1.02
+"20863","IAEA600","N","U.S. EPA","Normalization","Compound","High Organic",0.83,1.02
+"20866","IAEA600","N","U.S. EPA","Normalization","Compound","High Organic",0.89,1.02
 "1_wg","Reference Gas","N","U.S. EPA","Linearity","Reference Gas","Reference Gas",-0.00704046625321642,0
 "2_wg","Reference Gas","N","U.S. EPA","Linearity","Reference Gas","Reference Gas",0.00704046625332744,0
 "3_wg","Reference Gas","N","U.S. EPA","Linearity","Reference Gas","Reference Gas",-0.0464670772711839,0
