@@ -15,7 +15,7 @@ raw_data.df <- readRDS("Rdata/raw_data.rds")
 intermediate.df <- normalizations.df %>%
   filter(Method != "one.point") %>%
   filter(Type=="QC") %>%
-  filter(standards != "IAEA600_USGS91") %>%
+  filter(standards != "USGS91_IAEA600") %>%
   mutate(abs.deviation = abs(isotope.deviation)) %>%
   ungroup() %>%
   mutate(

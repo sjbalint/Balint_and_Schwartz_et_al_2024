@@ -24,7 +24,7 @@ raw_data.df <- readRDS("Rdata/raw_data.rds")
 intermediate.df <- normalizations.df %>%
   filter(Method != "one.point") %>%
   filter(Type=="QC") %>%
-  filter(standards != "IAEA600_USGS91") %>%
+  filter(standards != "USGS91_IAEA600") %>%
   mutate(abs.deviation = abs(isotope.deviation)) %>%
   ungroup() %>%
   mutate(deviation_significant = factor(deviation_significant, 
@@ -159,12 +159,31 @@ make_bar <- function(plot.df, x, percent=TRUE){
               position = position_dodge(width=-1.6), hjust=0.5)+
     geom_bar(alpha=0.5, width=0.65, stat="identity", position=position_dodge(width=0.75), color="black")+
     basetheme+
-    theme(legend.position="none")+
-    labs(y="% Signif.")+
-    scale_y_continuous(limits=c(0,100), breaks=c(0,50, 100))+
+    theme(legend.position="none",
+          axis.title.y = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0)))+
+    labs(y="% Significant")+
+    scale_y_continuous(limits=c(0,100), breaks=c(0,50, 100), expand=expansion(0,0))+
     geom_text(color="black", data=percent.df,aes(label=label, y=percentage),
               size = 3, position = position_dodge(width=0.75), vjust=-1)
     #scale_x_discrete(expand=expansion(mult=c(0.4,0.42)))
+}
+
+make_box <- function(plot.df, x){
+  ggplot(plot.df,aes(y=abs.deviation,x=get(x),fill=Species.3, color=Species.3,
+                     group=interaction(get(x),Species.3)))+
+    basetheme+
+    #geom_point(alpha=0.3, color="black", aes(shape=deviation_significant), position = position_jitterdodge(jitter.width = 0.8))+
+    geom_boxplot(alpha=0.5,
+                 outlier.shape=21,
+                 color="black")+
+    theme(
+      legend.title=element_blank(),
+      legend.position="top",
+      axis.text.x = element_blank(),
+      axis.line.x = element_blank(),
+      axis.ticks.x = element_blank())+
+    scale_y_log10(limits=c(0.001,10), breaks=labels,labels=labels)+
+    labs(y=paste("Deviation from certified value (‰)"))
 }
 
 make_boxplot <- function(plot.df, x, median_vjust=-0.7){
@@ -195,21 +214,7 @@ make_boxplot <- function(plot.df, x, median_vjust=-0.7){
            percentage=paste0(percentage, "%")) %>%
     filter(deviation_significant=="Significant")
   
-  p2 <- ggplot(plot.df,aes(y=abs.deviation,x=get(x),fill=Species.3, color=Species.3,
-                           group=interaction(get(x),Species.3),label=abs.deviation))+
-    basetheme+
-    #geom_point(alpha=0.3, color="black", aes(shape=deviation_significant), position = position_jitterdodge(jitter.width = 0.8))+
-    geom_boxplot(alpha=0.5,
-                 outlier.shape=21,
-                 color="black")+
-    theme(
-      legend.title=element_blank(),
-      legend.position="top",
-      axis.text.x = element_blank(),
-      axis.line.x = element_blank(),
-      axis.ticks.x = element_blank())+
-    scale_y_log10(limits=c(0.001,10), breaks=labels,labels=labels)+
-    labs(y=paste("Deviation from certified value (‰)"))+
+  p2 <- make_box(plot.df, x)+
     geom_text(color="black", data = cld.df, aes(y=median,label=median.label),
               size = 3, position=position_dodge(width=-0.75), vjust = median_vjust)+
     geom_text(color="black", data=cld.df,aes(label=Letter,y=upper_hinge),
@@ -305,7 +310,7 @@ ggplot(plot.df,aes(x=isotope.expected_C,y=isotope.expected_N,
       x=bquote(delta^13*C~'(‰)'),
       fill="Matrix")
 
-ggsave(paste0(fig_path,"Fig_S1.png"),width=mywidth, height=myheight)
+ggsave(paste0(fig_path,"Fig_S1.png"),width=mywidth, height=mywidth)
 
 
 # normalization method comparison -----------------------------------------
@@ -336,8 +341,7 @@ p2b <- make_plot(plot.df, x, label, label.position="right", percent.label=FALSE,
                 xlab="Number of Reference Materials", yaxis=FALSE, show.legend=FALSE)
 
 # combined plot -----------------------------------------------------------
-
-mylegend <- get_legend(make_boxplot(plot.df, x))
+mylegend <- ggpubr::get_legend(make_box(plot.df, x))
 
 p3 <- plot_grid(p1, p2, nrow = 1, align="vh", axis="tblr", rel_widths=c(1,0.9),
                 labels="AUTO", label_x=0.12, label_y=0.98) #configure labels for the subplots
@@ -351,7 +355,7 @@ p4 <- plot_grid(p1b, p2b, nrow = 1, align="vh", axis="tblr", rel_widths=c(1,0.9)
 
 plot_grid(mylegend,p4,nrow=2,rel_heights=c(0.1,2))
 
-ggsave(paste0(fig_path,"Fig_S3.png"),width=mywidth*2, height=myheight)
+ggsave(paste0(fig_path,"Fig_S3.png"),width=10, height=myheight)
 
 # matrix ------------------------------------------------------------------
 
@@ -390,7 +394,7 @@ label <- "Isotopic Range > 20‰\nThree Point\nInterpolated"
 make_plot(plot.df, x, label,
           xlab="Reference Material Matrix\nQuality Control Matrix")
 
-ggsave(paste0(fig_path,"Fig_S4.svg"),width=mywidth*2, height=myheight)
+ggsave(paste0(fig_path,"Fig_S4.svg"),width=10, height=myheight)
 
 # extrapolation -----------------------------------------------------------
 
@@ -447,7 +451,7 @@ label <- "Two Point\nExtrapolated"
 p4 <- make_plot(plot.df, x, label, yaxis=FALSE, xlab="Isotopic Range (‰)",
                 label.position="right", show.legend=FALSE, median_vjust=-0.5)
 
-mylegend <- get_legend(make_boxplot(plot.df, x))
+mylegend <- ggpubr::get_legend(make_boxplot(plot.df, x))
 
 plot <- plot_grid(p1, p2, p3, p4, nrow = 2, align="vh", axis="tblr",
                 rel_widths=c(1,0.9, 1, 0.9), rel_heights=c(1,1, 0.9, 0.9),

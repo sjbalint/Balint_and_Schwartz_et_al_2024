@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 864 576">
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 720 576">
   <defs>
     <style>
       .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
@@ -122,119 +122,119 @@
       }
     </style>
     <clipPath id="clippath-1">
-      <rect class="cls-18" width="864" height="439.3"/>
+      <rect class="cls-18" width="720" height="439.3"/>
     </clipPath>
     <clipPath id="clippath-3">
-      <rect class="cls-18" x="46" y="44.7" width="812.5" height="386.4"/>
+      <rect class="cls-18" x="46" y="44.7" width="668.5" height="386.4"/>
     </clipPath>
     <clipPath id="clippath-4">
-      <rect class="cls-18" width="864" height="576"/>
+      <rect class="cls-18" width="720" height="576"/>
     </clipPath>
     <clipPath id="clippath-5">
-      <rect class="cls-18" y="439.3" width="864" height="136.7"/>
+      <rect class="cls-18" y="439.3" width="720" height="136.7"/>
     </clipPath>
     <clipPath id="clippath-7">
-      <rect class="cls-18" x="46" y="444.8" width="812.5" height="77.9"/>
+      <rect class="cls-18" x="46" y="444.8" width="668.5" height="77.9"/>
     </clipPath>
     <clipPath id="clippath-8">
-      <rect class="cls-18" width="864" height="576"/>
+      <rect class="cls-18" width="720" height="576"/>
     </clipPath>
   </defs>
-  <rect class="cls-18" width="864" height="576"/>
+  <rect class="cls-18" width="720" height="576"/>
   <g class="cls-20">
-    <rect class="cls-7" width="864" height="439.3"/>
+    <rect class="cls-7" width="720" height="439.3"/>
   </g>
   <g class="cls-22">
     <g>
-      <rect class="cls-8" x="46" y="44.7" width="812.5" height="386.4"/>
-      <line class="cls-19" x1="46" y1="413.5" x2="858.5" y2="413.5"/>
-      <line class="cls-19" x1="46" y1="325.7" x2="858.5" y2="325.7"/>
-      <line class="cls-19" x1="46" y1="237.9" x2="858.5" y2="237.9"/>
-      <line class="cls-19" x1="46" y1="150.1" x2="858.5" y2="150.1"/>
-      <line class="cls-19" x1="46" y1="62.2" x2="858.5" y2="62.2"/>
-      <line class="cls-11" x1="121.4" y1="247.6" x2="121.4" y2="234.9"/>
-      <line class="cls-11" x1="121.4" y1="303.9" x2="121.4" y2="314.6"/>
-      <polygon class="cls-12" points="100.6 247.6 100.6 303.9 142.2 303.9 142.2 247.6 100.6 247.6"/>
-      <line class="cls-15" x1="100.6" y1="276.1" x2="142.2" y2="276.1"/>
-      <circle class="cls-16" cx="244.5" cy="331.2" r="2"/>
-      <line class="cls-11" x1="244.5" y1="232.5" x2="244.5" y2="222.8"/>
-      <line class="cls-11" x1="244.5" y1="267.8" x2="244.5" y2="282"/>
-      <polygon class="cls-12" points="223.7 232.5 223.7 267.8 265.3 267.8 265.3 232.5 223.7 232.5"/>
-      <line class="cls-15" x1="223.7" y1="245.4" x2="265.3" y2="245.4"/>
-      <circle class="cls-16" cx="367.6" cy="355" r="2"/>
-      <circle class="cls-16" cx="367.6" cy="365.5" r="2"/>
-      <line class="cls-11" x1="367.6" y1="224.4" x2="367.6" y2="206.8"/>
-      <line class="cls-11" x1="367.6" y1="273.4" x2="367.6" y2="343.2"/>
-      <polygon class="cls-12" points="346.8 224.4 346.8 273.4 388.4 273.4 388.4 224.4 346.8 224.4"/>
-      <line class="cls-15" x1="346.8" y1="258.2" x2="388.4" y2="258.2"/>
-      <circle class="cls-16" cx="490.7" cy="385.1" r="2"/>
-      <line class="cls-11" x1="490.7" y1="210.6" x2="490.7" y2="187.7"/>
-      <line class="cls-11" x1="490.7" y1="270.9" x2="490.7" y2="338.5"/>
-      <polygon class="cls-12" points="470 210.6 470 270.9 511.5 270.9 511.5 210.6 470 210.6"/>
-      <line class="cls-15" x1="470" y1="242.9" x2="511.5" y2="242.9"/>
-      <line class="cls-11" x1="613.8" y1="197.5" x2="613.8" y2="178.4"/>
-      <line class="cls-11" x1="613.8" y1="279.2" x2="613.8" y2="366.4"/>
-      <polygon class="cls-12" points="593.1 197.5 593.1 279.2 634.6 279.2 634.6 197.5 593.1 197.5"/>
-      <line class="cls-15" x1="593.1" y1="238.4" x2="634.6" y2="238.4"/>
-      <line class="cls-11" x1="737" y1="198.5" x2="737" y2="187.1"/>
-      <line class="cls-11" x1="737" y1="275.5" x2="737" y2="327"/>
-      <polygon class="cls-12" points="716.2 198.5 716.2 275.5 757.7 275.5 757.7 198.5 716.2 198.5"/>
-      <line class="cls-15" x1="716.2" y1="226.1" x2="757.7" y2="226.1"/>
-      <line class="cls-11" x1="167.6" y1="243.8" x2="167.6" y2="218.2"/>
-      <line class="cls-11" x1="167.6" y1="266.1" x2="167.6" y2="289.5"/>
-      <polygon class="cls-9" points="146.8 243.8 146.8 266.1 188.3 266.1 188.3 243.8 146.8 243.8"/>
-      <line class="cls-15" x1="146.8" y1="255.3" x2="188.3" y2="255.3"/>
-      <line class="cls-11" x1="290.7" y1="229.4" x2="290.7" y2="215.6"/>
-      <line class="cls-11" x1="290.7" y1="308.4" x2="290.7" y2="365.1"/>
-      <polygon class="cls-9" points="269.9 229.4 269.9 308.4 311.4 308.4 311.4 229.4 269.9 229.4"/>
-      <line class="cls-15" x1="269.9" y1="257.4" x2="311.4" y2="257.4"/>
-      <circle class="cls-17" cx="413.8" cy="386.5" r="2"/>
-      <circle class="cls-17" cx="413.8" cy="388.1" r="2"/>
-      <line class="cls-11" x1="413.8" y1="219.6" x2="413.8" y2="171.8"/>
-      <line class="cls-11" x1="413.8" y1="286.3" x2="413.8" y2="358.6"/>
-      <polygon class="cls-9" points="393 219.6 393 286.3 434.5 286.3 434.5 219.6 393 219.6"/>
-      <line class="cls-15" x1="393" y1="250.6" x2="434.5" y2="250.6"/>
-      <line class="cls-11" x1="536.9" y1="214.3" x2="536.9" y2="170.4"/>
-      <line class="cls-11" x1="536.9" y1="270.4" x2="536.9" y2="313.3"/>
-      <polygon class="cls-9" points="516.1 214.3 516.1 270.4 557.7 270.4 557.7 214.3 516.1 214.3"/>
-      <line class="cls-15" x1="516.1" y1="241.8" x2="557.7" y2="241.8"/>
-      <circle class="cls-17" cx="660" cy="249.6" r="2"/>
-      <circle class="cls-17" cx="660" cy="245.6" r="2"/>
-      <line class="cls-11" x1="660" y1="174.6" x2="660" y2="166.7"/>
-      <line class="cls-11" x1="660" y1="202.9" x2="660" y2="241.9"/>
-      <polygon class="cls-9" points="639.2 174.6 639.2 202.9 680.8 202.9 680.8 174.6 639.2 174.6"/>
-      <line class="cls-15" x1="639.2" y1="196.5" x2="680.8" y2="196.5"/>
-      <line class="cls-11" x1="783.1" y1="172.1" x2="783.1" y2="166.1"/>
-      <line class="cls-11" x1="783.1" y1="194.1" x2="783.1" y2="225.5"/>
-      <polygon class="cls-9" points="762.3 172.1 762.3 194.1 803.9 194.1 803.9 172.1 762.3 172.1"/>
-      <line class="cls-15" x1="762.3" y1="190.2" x2="803.9" y2="190.2"/>
-      <text class="cls-6" transform="translate(156.9 250.9)"><tspan x="0" y="0">0.064</tspan></text>
-      <text class="cls-6" transform="translate(280 246.9)"><tspan x="0" y="0">0.070</tspan></text>
-      <text class="cls-6" transform="translate(403.1 246.1)"><tspan x="0" y="0">0.072</tspan></text>
-      <text class="cls-6" transform="translate(526.2 237.5)"><tspan x="0" y="0">0.090</tspan></text>
-      <text class="cls-6" transform="translate(649.3 192.2)"><tspan x="0" y="0">0.296</tspan></text>
-      <text class="cls-6" transform="translate(772.4 185.9)"><tspan x="0" y="0">0.350</tspan></text>
-      <text class="cls-6" transform="translate(110.7 264.6)"><tspan x="0" y="0">0.044</tspan></text>
-      <text class="cls-6" transform="translate(233.8 240.8)"><tspan x="0" y="0">0.083</tspan></text>
-      <text class="cls-6" transform="translate(356.9 256.3)"><tspan x="0" y="0">0.055</tspan></text>
-      <text class="cls-6" transform="translate(480 239.9)"><tspan x="0" y="0">0.085</tspan></text>
-      <text class="cls-6" transform="translate(603.2 234.1)"><tspan x="0" y="0">0.099</tspan></text>
-      <text class="cls-6" transform="translate(726.3 217.9)"><tspan x="0" y="0">0.151</tspan></text>
-      <text class="cls-4" transform="translate(187.6 223.6)"><tspan x="0" y="0">ab</tspan></text>
-      <text class="cls-4" transform="translate(313.8 221.1)"><tspan x="0" y="0">a</tspan></text>
-      <text class="cls-4" transform="translate(436.9 211.6)"><tspan x="0" y="0">a</tspan></text>
-      <text class="cls-4" transform="translate(560 206.4)"><tspan x="0" y="0">a</tspan></text>
-      <text class="cls-4" transform="translate(683.1 166.5)"><tspan x="0" y="0">b</tspan></text>
-      <text class="cls-4" transform="translate(806.2 160.7)"><tspan x="0" y="0">b</tspan></text>
-      <text class="cls-4" transform="translate(91.5 234.5)"><tspan x="0" y="0">A</tspan></text>
-      <text class="cls-4" transform="translate(214.7 224.2)"><tspan x="0" y="0">A</tspan></text>
-      <text class="cls-4" transform="translate(337.8 216.4)"><tspan x="0" y="0">A</tspan></text>
-      <text class="cls-4" transform="translate(460.9 202.7)"><tspan x="0" y="0">A</tspan></text>
-      <text class="cls-4" transform="translate(584 189.4)"><tspan x="0" y="0">A</tspan></text>
-      <text class="cls-4" transform="translate(707.1 187.8)"><tspan x="0" y="0">A</tspan></text>
-      <text class="cls-2" transform="translate(127.2 72.5)"><tspan x="0" y="0">Isotopic Range &gt; 20‰</tspan></text>
-      <text class="cls-2" transform="translate(127.2 86.9)"><tspan x="0" y="0">Three Point</tspan></text>
-      <text class="cls-2" transform="translate(127.2 101.3)"><tspan x="0" y="0">Interpolated</tspan></text>
+      <rect class="cls-8" x="46" y="44.7" width="668.5" height="386.4"/>
+      <line class="cls-19" x1="46" y1="413.5" x2="714.5" y2="413.5"/>
+      <line class="cls-19" x1="46" y1="325.7" x2="714.5" y2="325.7"/>
+      <line class="cls-19" x1="46" y1="237.9" x2="714.5" y2="237.9"/>
+      <line class="cls-19" x1="46" y1="150.1" x2="714.5" y2="150.1"/>
+      <line class="cls-19" x1="46" y1="62.2" x2="714.5" y2="62.2"/>
+      <line class="cls-11" x1="108" y1="247.6" x2="108" y2="234.9"/>
+      <line class="cls-11" x1="108" y1="303.9" x2="108" y2="314.6"/>
+      <polygon class="cls-12" points="90.9 247.6 90.9 303.9 125.1 303.9 125.1 247.6 90.9 247.6"/>
+      <line class="cls-15" x1="90.9" y1="276.1" x2="125.1" y2="276.1"/>
+      <circle class="cls-16" cx="209.3" cy="331.2" r="2"/>
+      <line class="cls-11" x1="209.3" y1="232.5" x2="209.3" y2="222.8"/>
+      <line class="cls-11" x1="209.3" y1="267.8" x2="209.3" y2="282"/>
+      <polygon class="cls-12" points="192.2 232.5 192.2 267.8 226.4 267.8 226.4 232.5 192.2 232.5"/>
+      <line class="cls-15" x1="192.2" y1="245.4" x2="226.4" y2="245.4"/>
+      <circle class="cls-16" cx="310.6" cy="355" r="2"/>
+      <circle class="cls-16" cx="310.6" cy="365.5" r="2"/>
+      <line class="cls-11" x1="310.6" y1="224.4" x2="310.6" y2="206.8"/>
+      <line class="cls-11" x1="310.6" y1="273.4" x2="310.6" y2="343.2"/>
+      <polygon class="cls-12" points="293.5 224.4 293.5 273.4 327.7 273.4 327.7 224.4 293.5 224.4"/>
+      <line class="cls-15" x1="293.5" y1="258.2" x2="327.7" y2="258.2"/>
+      <circle class="cls-16" cx="411.9" cy="385.1" r="2"/>
+      <line class="cls-11" x1="411.9" y1="210.6" x2="411.9" y2="187.7"/>
+      <line class="cls-11" x1="411.9" y1="270.9" x2="411.9" y2="338.5"/>
+      <polygon class="cls-12" points="394.8 210.6 394.8 270.9 429 270.9 429 210.6 394.8 210.6"/>
+      <line class="cls-15" x1="394.8" y1="242.9" x2="429" y2="242.9"/>
+      <line class="cls-11" x1="513.2" y1="197.5" x2="513.2" y2="178.4"/>
+      <line class="cls-11" x1="513.2" y1="279.2" x2="513.2" y2="366.4"/>
+      <polygon class="cls-12" points="496.1 197.5 496.1 279.2 530.3 279.2 530.3 197.5 496.1 197.5"/>
+      <line class="cls-15" x1="496.1" y1="238.4" x2="530.3" y2="238.4"/>
+      <line class="cls-11" x1="614.5" y1="198.5" x2="614.5" y2="187.1"/>
+      <line class="cls-11" x1="614.5" y1="275.5" x2="614.5" y2="327"/>
+      <polygon class="cls-12" points="597.4 198.5 597.4 275.5 631.6 275.5 631.6 198.5 597.4 198.5"/>
+      <line class="cls-15" x1="597.4" y1="226.1" x2="631.6" y2="226.1"/>
+      <line class="cls-11" x1="146" y1="243.8" x2="146" y2="218.2"/>
+      <line class="cls-11" x1="146" y1="266.1" x2="146" y2="289.5"/>
+      <polygon class="cls-9" points="128.9 243.8 128.9 266.1 163.1 266.1 163.1 243.8 128.9 243.8"/>
+      <line class="cls-15" x1="128.9" y1="255.3" x2="163.1" y2="255.3"/>
+      <line class="cls-11" x1="247.3" y1="229.4" x2="247.3" y2="215.6"/>
+      <line class="cls-11" x1="247.3" y1="308.4" x2="247.3" y2="365.1"/>
+      <polygon class="cls-9" points="230.2 229.4 230.2 308.4 264.4 308.4 264.4 229.4 230.2 229.4"/>
+      <line class="cls-15" x1="230.2" y1="257.4" x2="264.4" y2="257.4"/>
+      <circle class="cls-17" cx="348.6" cy="386.5" r="2"/>
+      <circle class="cls-17" cx="348.6" cy="388.1" r="2"/>
+      <line class="cls-11" x1="348.6" y1="219.6" x2="348.6" y2="171.8"/>
+      <line class="cls-11" x1="348.6" y1="286.3" x2="348.6" y2="358.6"/>
+      <polygon class="cls-9" points="331.5 219.6 331.5 286.3 365.7 286.3 365.7 219.6 331.5 219.6"/>
+      <line class="cls-15" x1="331.5" y1="250.6" x2="365.7" y2="250.6"/>
+      <line class="cls-11" x1="449.9" y1="214.3" x2="449.9" y2="170.4"/>
+      <line class="cls-11" x1="449.9" y1="270.4" x2="449.9" y2="313.3"/>
+      <polygon class="cls-9" points="432.8 214.3 432.8 270.4 467 270.4 467 214.3 432.8 214.3"/>
+      <line class="cls-15" x1="432.8" y1="241.8" x2="467" y2="241.8"/>
+      <circle class="cls-17" cx="551.2" cy="249.6" r="2"/>
+      <circle class="cls-17" cx="551.2" cy="245.6" r="2"/>
+      <line class="cls-11" x1="551.2" y1="174.6" x2="551.2" y2="166.7"/>
+      <line class="cls-11" x1="551.2" y1="202.9" x2="551.2" y2="241.9"/>
+      <polygon class="cls-9" points="534.1 174.6 534.1 202.9 568.3 202.9 568.3 174.6 534.1 174.6"/>
+      <line class="cls-15" x1="534.1" y1="196.5" x2="568.3" y2="196.5"/>
+      <line class="cls-11" x1="652.5" y1="172.1" x2="652.5" y2="166.1"/>
+      <line class="cls-11" x1="652.5" y1="194.1" x2="652.5" y2="225.5"/>
+      <polygon class="cls-9" points="635.4 172.1 635.4 194.1 669.6 194.1 669.6 172.1 635.4 172.1"/>
+      <line class="cls-15" x1="635.4" y1="190.2" x2="669.6" y2="190.2"/>
+      <text class="cls-6" transform="translate(135.3 252.9)"><tspan x="0" y="0">0.064</tspan></text>
+      <text class="cls-6" transform="translate(236.6 252.9)"><tspan x="0" y="0">0.070</tspan></text>
+      <text class="cls-6" transform="translate(337.9 246.1)"><tspan x="0" y="0">0.072</tspan></text>
+      <text class="cls-6" transform="translate(439.2 237.5)"><tspan x="0" y="0">0.090</tspan></text>
+      <text class="cls-6" transform="translate(540.5 192.2)"><tspan x="0" y="0">0.296</tspan></text>
+      <text class="cls-6" transform="translate(641.8 185.9)"><tspan x="0" y="0">0.350</tspan></text>
+      <text class="cls-6" transform="translate(97.3 272.6)"><tspan x="0" y="0">0.044</tspan></text>
+      <text class="cls-6" transform="translate(198.6 241.8)"><tspan x="0" y="0">0.083</tspan></text>
+      <text class="cls-6" transform="translate(299.9 254.3)"><tspan x="0" y="0">0.055</tspan></text>
+      <text class="cls-6" transform="translate(401.2 239.9)"><tspan x="0" y="0">0.085</tspan></text>
+      <text class="cls-6" transform="translate(502.5 234.1)"><tspan x="0" y="0">0.099</tspan></text>
+      <text class="cls-6" transform="translate(603.8 221.9)"><tspan x="0" y="0">0.151</tspan></text>
+      <text class="cls-4" transform="translate(161.4 223.6)"><tspan x="0" y="0">ab</tspan></text>
+      <text class="cls-4" transform="translate(265.8 221.1)"><tspan x="0" y="0">a</tspan></text>
+      <text class="cls-4" transform="translate(367.1 211.6)"><tspan x="0" y="0">a</tspan></text>
+      <text class="cls-4" transform="translate(468.3 206.4)"><tspan x="0" y="0">a</tspan></text>
+      <text class="cls-4" transform="translate(569.6 166.5)"><tspan x="0" y="0">b</tspan></text>
+      <text class="cls-4" transform="translate(670.9 160.7)"><tspan x="0" y="0">b</tspan></text>
+      <text class="cls-4" transform="translate(82.8 234.5)"><tspan x="0" y="0">A</tspan></text>
+      <text class="cls-4" transform="translate(184.1 224.2)"><tspan x="0" y="0">A</tspan></text>
+      <text class="cls-4" transform="translate(285.4 216.4)"><tspan x="0" y="0">A</tspan></text>
+      <text class="cls-4" transform="translate(386.7 202.7)"><tspan x="0" y="0">A</tspan></text>
+      <text class="cls-4" transform="translate(488 189.4)"><tspan x="0" y="0">A</tspan></text>
+      <text class="cls-4" transform="translate(589.3 187.8)"><tspan x="0" y="0">A</tspan></text>
+      <text class="cls-2" transform="translate(112.8 72.5)"><tspan x="0" y="0">Isotopic Range &gt; 20‰</tspan></text>
+      <text class="cls-2" transform="translate(112.8 86.9)"><tspan x="0" y="0">Three Point</tspan></text>
+      <text class="cls-2" transform="translate(112.8 101.3)"><tspan x="0" y="0">Interpolated</tspan></text>
       <line class="cls-13" x1="46" y1="427.1" x2="48.8" y2="427.1"/>
       <line class="cls-13" x1="46" y1="422" x2="48.8" y2="422"/>
       <line class="cls-13" x1="46" y1="417.6" x2="48.8" y2="417.6"/>
@@ -291,98 +291,98 @@
       <line class="cls-10" x1="43.2" y1="150.1" x2="46" y2="150.1"/>
       <line class="cls-10" x1="43.2" y1="62.2" x2="46" y2="62.2"/>
       <text class="cls-3" transform="translate(13.4 319.5) rotate(-90)"><tspan x="0" y="0">Deviation from certified value (‰)</tspan></text>
-      <rect class="cls-8" x="389.5" y="5.5" width="125.5" height="28.2"/>
-      <rect class="cls-8" x="395" y="11" width="17.3" height="17.3"/>
-      <line class="cls-14" x1="403.6" y1="26.5" x2="403.6" y2="23.9"/>
-      <line class="cls-14" x1="403.6" y1="15.3" x2="403.6" y2="12.7"/>
-      <rect class="cls-12" x="397.1" y="15.3" width="13" height="8.6"/>
-      <line class="cls-14" x1="397.1" y1="19.6" x2="410.1" y2="19.6"/>
-      <rect class="cls-8" x="457.2" y="11" width="17.3" height="17.3"/>
-      <line class="cls-14" x1="465.9" y1="26.5" x2="465.9" y2="23.9"/>
-      <line class="cls-14" x1="465.9" y1="15.3" x2="465.9" y2="12.7"/>
-      <rect class="cls-9" x="459.4" y="15.3" width="13" height="8.6"/>
-      <line class="cls-14" x1="459.4" y1="19.6" x2="472.4" y2="19.6"/>
-      <text class="cls-5" transform="translate(417.8 22.8)"><tspan x="0" y="0">Nitrogen</tspan></text>
-      <text class="cls-5" transform="translate(480 22.8)"><tspan x="0" y="0">Carbon</tspan></text>
+      <rect class="cls-8" x="317.5" y="5.5" width="125.5" height="28.2"/>
+      <rect class="cls-8" x="323" y="11" width="17.3" height="17.3"/>
+      <line class="cls-14" x1="331.6" y1="26.5" x2="331.6" y2="23.9"/>
+      <line class="cls-14" x1="331.6" y1="15.3" x2="331.6" y2="12.7"/>
+      <rect class="cls-12" x="325.1" y="15.3" width="13" height="8.6"/>
+      <line class="cls-14" x1="325.1" y1="19.6" x2="338.1" y2="19.6"/>
+      <rect class="cls-8" x="385.2" y="11" width="17.3" height="17.3"/>
+      <line class="cls-14" x1="393.9" y1="26.5" x2="393.9" y2="23.9"/>
+      <line class="cls-14" x1="393.9" y1="15.3" x2="393.9" y2="12.7"/>
+      <rect class="cls-9" x="387.4" y="15.3" width="13" height="8.6"/>
+      <line class="cls-14" x1="387.4" y1="19.6" x2="400.4" y2="19.6"/>
+      <text class="cls-5" transform="translate(345.8 22.8)"><tspan x="0" y="0">Nitrogen</tspan></text>
+      <text class="cls-5" transform="translate(408 22.8)"><tspan x="0" y="0">Carbon</tspan></text>
     </g>
   </g>
   <g class="cls-25">
-    <rect class="cls-7" y="439.3" width="864" height="136.7"/>
+    <rect class="cls-7" y="439.3" width="720" height="136.7"/>
   </g>
   <g class="cls-23">
     <g>
-      <rect class="cls-8" x="46" y="444.8" width="812.5" height="77.9"/>
-      <line class="cls-19" x1="46" y1="519.2" x2="858.5" y2="519.2"/>
-      <line class="cls-19" x1="46" y1="483.8" x2="858.5" y2="483.8"/>
-      <line class="cls-19" x1="46" y1="448.3" x2="858.5" y2="448.3"/>
-      <text class="cls-1" transform="translate(190 505.4)"><tspan x="0" y="0">X</tspan></text>
-      <text class="cls-1" transform="translate(313.1 505.4)"><tspan x="0" y="0">X</tspan></text>
-      <text class="cls-1" transform="translate(436.3 505.4)"><tspan x="0" y="0">X</tspan></text>
-      <text class="cls-1" transform="translate(559.4 505.4)"><tspan x="0" y="0">X</tspan></text>
-      <text class="cls-1" transform="translate(682.5 505.4)"><tspan x="0" y="0">X</tspan></text>
-      <text class="cls-1" transform="translate(805.6 505.4)"><tspan x="0" y="0">X</tspan></text>
-      <text class="cls-1" transform="translate(91.5 505.4)"><tspan x="0" y="0">X</tspan></text>
-      <text class="cls-1" transform="translate(214.7 505.4)"><tspan x="0" y="0">X</tspan></text>
-      <text class="cls-1" transform="translate(337.8 505.4)"><tspan x="0" y="0">X</tspan></text>
-      <text class="cls-1" transform="translate(460.9 505.4)"><tspan x="0" y="0">X</tspan></text>
-      <text class="cls-1" transform="translate(584 505.4)"><tspan x="0" y="0">X</tspan></text>
-      <text class="cls-1" transform="translate(707.1 505.4)"><tspan x="0" y="0">X</tspan></text>
-      <polygon class="cls-12" points="101.4 519.2 141.4 519.2 141.4 519.2 101.4 519.2"/>
-      <polygon class="cls-12" points="224.5 519.2 264.5 519.2 264.5 519.2 224.5 519.2"/>
-      <polygon class="cls-12" points="347.6 519.2 387.6 519.2 387.6 519.2 347.6 519.2"/>
-      <rect class="cls-12" x="470.7" y="516.3" width="40" height="2.8"/>
-      <rect class="cls-12" x="593.8" y="500.8" width="40" height="18.4"/>
-      <rect class="cls-12" x="716.9" y="489.4" width="40" height="29.8"/>
-      <rect class="cls-9" x="147.6" y="501.5" width="40" height="17.7"/>
-      <rect class="cls-9" x="270.7" y="513.5" width="40" height="5.7"/>
-      <rect class="cls-9" x="393.8" y="507.8" width="40" height="11.3"/>
-      <rect class="cls-9" x="516.9" y="506.4" width="40" height="12.8"/>
-      <rect class="cls-9" x="640" y="466" width="40" height="53.1"/>
-      <rect class="cls-9" x="763.1" y="455.4" width="40" height="63.8"/>
-      <text class="cls-6" transform="translate(115.2 513)"><tspan x="0" y="0">0%</tspan></text>
-      <text class="cls-6" transform="translate(238.3 513)"><tspan x="0" y="0">0%</tspan></text>
-      <text class="cls-6" transform="translate(361.4 513)"><tspan x="0" y="0">0%</tspan></text>
-      <text class="cls-6" transform="translate(484.5 510.2)"><tspan x="0" y="0">4%</tspan></text>
-      <text class="cls-6" transform="translate(605.3 494.6)"><tspan x="0" y="0">26%</tspan></text>
-      <text class="cls-6" transform="translate(728.4 483.3)"><tspan x="0" y="0">42%</tspan></text>
-      <text class="cls-6" transform="translate(159 495.3)"><tspan x="0" y="0">25%</tspan></text>
-      <text class="cls-6" transform="translate(284.5 507.4)"><tspan x="0" y="0">8%</tspan></text>
-      <text class="cls-6" transform="translate(405.2 501.7)"><tspan x="0" y="0">16%</tspan></text>
-      <text class="cls-6" transform="translate(528.3 500.3)"><tspan x="0" y="0">18%</tspan></text>
-      <text class="cls-6" transform="translate(651.5 459.9)"><tspan x="0" y="0">75%</tspan></text>
-      <text class="cls-6" transform="translate(774.6 452.3)"><tspan x="0" y="0">90%</tspan></text>
+      <rect class="cls-8" x="46" y="444.8" width="668.5" height="77.9"/>
+      <line class="cls-19" x1="46" y1="522.7" x2="714.5" y2="522.7"/>
+      <line class="cls-19" x1="46" y1="483.8" x2="714.5" y2="483.8"/>
+      <line class="cls-19" x1="46" y1="444.8" x2="714.5" y2="444.8"/>
+      <text class="cls-1" transform="translate(163.8 507.2)"><tspan x="0" y="0">X</tspan></text>
+      <text class="cls-1" transform="translate(265.1 507.2)"><tspan x="0" y="0">X</tspan></text>
+      <text class="cls-1" transform="translate(366.4 507.2)"><tspan x="0" y="0">X</tspan></text>
+      <text class="cls-1" transform="translate(467.7 507.2)"><tspan x="0" y="0">X</tspan></text>
+      <text class="cls-1" transform="translate(569 507.2)"><tspan x="0" y="0">X</tspan></text>
+      <text class="cls-1" transform="translate(670.3 507.2)"><tspan x="0" y="0">X</tspan></text>
+      <text class="cls-1" transform="translate(82.8 507.2)"><tspan x="0" y="0">X</tspan></text>
+      <text class="cls-1" transform="translate(184.1 507.2)"><tspan x="0" y="0">X</tspan></text>
+      <text class="cls-1" transform="translate(285.4 507.2)"><tspan x="0" y="0">X</tspan></text>
+      <text class="cls-1" transform="translate(386.7 507.2)"><tspan x="0" y="0">X</tspan></text>
+      <text class="cls-1" transform="translate(488 507.2)"><tspan x="0" y="0">X</tspan></text>
+      <text class="cls-1" transform="translate(589.3 507.2)"><tspan x="0" y="0">X</tspan></text>
+      <polygon class="cls-12" points="91.6 522.7 124.5 522.7 124.5 522.7 91.6 522.7"/>
+      <polygon class="cls-12" points="192.9 522.7 225.8 522.7 225.8 522.7 192.9 522.7"/>
+      <polygon class="cls-12" points="294.1 522.7 327.1 522.7 327.1 522.7 294.1 522.7"/>
+      <rect class="cls-12" x="395.4" y="519.6" width="32.9" height="3.1"/>
+      <rect class="cls-12" x="496.7" y="502.5" width="32.9" height="20.3"/>
+      <rect class="cls-12" x="598" y="490" width="32.9" height="32.7"/>
+      <rect class="cls-9" x="129.6" y="503.2" width="32.9" height="19.5"/>
+      <rect class="cls-9" x="230.8" y="516.5" width="32.9" height="6.2"/>
+      <rect class="cls-9" x="332.1" y="510.2" width="32.9" height="12.5"/>
+      <rect class="cls-9" x="433.4" y="508.7" width="32.9" height="14"/>
+      <rect class="cls-9" x="534.7" y="464.3" width="32.9" height="58.4"/>
+      <rect class="cls-9" x="636" y="452.6" width="32.9" height="70.1"/>
+      <text class="cls-6" transform="translate(101.8 516.6)"><tspan x="0" y="0">0%</tspan></text>
+      <text class="cls-6" transform="translate(203.1 516.6)"><tspan x="0" y="0">0%</tspan></text>
+      <text class="cls-6" transform="translate(304.4 516.6)"><tspan x="0" y="0">0%</tspan></text>
+      <text class="cls-6" transform="translate(405.7 513.5)"><tspan x="0" y="0">4%</tspan></text>
+      <text class="cls-6" transform="translate(504.7 496.3)"><tspan x="0" y="0">26%</tspan></text>
+      <text class="cls-6" transform="translate(605.9 483.9)"><tspan x="0" y="0">42%</tspan></text>
+      <text class="cls-6" transform="translate(137.5 497.1)"><tspan x="0" y="0">25%</tspan></text>
+      <text class="cls-6" transform="translate(241.1 510.4)"><tspan x="0" y="0">8%</tspan></text>
+      <text class="cls-6" transform="translate(340.1 504.1)"><tspan x="0" y="0">16%</tspan></text>
+      <text class="cls-6" transform="translate(441.3 502.6)"><tspan x="0" y="0">18%</tspan></text>
+      <text class="cls-6" transform="translate(542.6 458.2)"><tspan x="0" y="0">75%</tspan></text>
     </g>
   </g>
   <g class="cls-24">
     <g>
       <line class="cls-11" x1="46" y1="522.7" x2="46" y2="444.8"/>
-      <text class="cls-5" transform="translate(36.2 522.3)"><tspan x="0" y="0">0</tspan></text>
+      <text class="cls-5" transform="translate(36.2 525.9)"><tspan x="0" y="0">0</tspan></text>
       <text class="cls-5" transform="translate(31.3 486.9)"><tspan x="0" y="0">50</tspan></text>
-      <text class="cls-5" transform="translate(26.4 451.5)"><tspan x="0" y="0">100</tspan></text>
-      <line class="cls-10" x1="43.2" y1="519.2" x2="46" y2="519.2"/>
+      <text class="cls-5" transform="translate(26.4 448)"><tspan x="0" y="0">100</tspan></text>
+      <line class="cls-10" x1="43.2" y1="522.7" x2="46" y2="522.7"/>
       <line class="cls-10" x1="43.2" y1="483.8" x2="46" y2="483.8"/>
-      <line class="cls-10" x1="43.2" y1="448.3" x2="46" y2="448.3"/>
-      <line class="cls-11" x1="46" y1="522.7" x2="858.5" y2="522.7"/>
-      <line class="cls-10" x1="144.5" y1="525.5" x2="144.5" y2="522.7"/>
-      <line class="cls-10" x1="267.6" y1="525.5" x2="267.6" y2="522.7"/>
-      <line class="cls-10" x1="390.7" y1="525.5" x2="390.7" y2="522.7"/>
-      <line class="cls-10" x1="513.8" y1="525.5" x2="513.8" y2="522.7"/>
-      <line class="cls-10" x1="636.9" y1="525.5" x2="636.9" y2="522.7"/>
-      <line class="cls-10" x1="760" y1="525.5" x2="760" y2="522.7"/>
-      <text class="cls-5" transform="translate(127.6 534)"><tspan x="0" y="0">Matched</tspan></text>
-      <text class="cls-5" transform="translate(246.1 534)"><tspan x="0" y="0">Compound</tspan></text>
-      <text class="cls-5" transform="translate(237.7 543.5)"><tspan x="0" y="0">Macromolecule</tspan></text>
-      <text class="cls-5" transform="translate(379 534)"><tspan x="0" y="0">Mixed</tspan></text>
-      <text class="cls-5" transform="translate(369.2 543.5)"><tspan x="0" y="0">Compound</tspan></text>
-      <text class="cls-5" transform="translate(502.1 534)"><tspan x="0" y="0">Mixed</tspan></text>
-      <text class="cls-5" transform="translate(484 543.5)"><tspan x="0" y="0">Macromolecule</tspan></text>
-      <text class="cls-5" transform="translate(625.2 534)"><tspan x="0" y="0">Mixed</tspan></text>
-      <text class="cls-5" transform="translate(626.9 543.5)"><tspan x="0" y="0">Plant</tspan></text>
-      <text class="cls-5" transform="translate(738.5 534)"><tspan x="0" y="0">Compound</tspan></text>
-      <text class="cls-5" transform="translate(750 543.5)"><tspan x="0" y="0">Plant</tspan></text>
-      <text class="cls-3" transform="translate(389.3 556.2)"><tspan x="0" y="0">Reference Material Matrix</tspan></text>
-      <text class="cls-3" transform="translate(399.4 568.1)"><tspan x="0" y="0">Quality Control Matrix</tspan></text>
-      <text class="cls-3" transform="translate(20.9 505.5) rotate(-90)"><tspan x="0" y="0">% Signif.</tspan></text>
+      <line class="cls-10" x1="43.2" y1="444.8" x2="46" y2="444.8"/>
+      <line class="cls-11" x1="46" y1="522.7" x2="714.5" y2="522.7"/>
+      <line class="cls-10" x1="127" y1="525.5" x2="127" y2="522.7"/>
+      <line class="cls-10" x1="228.3" y1="525.5" x2="228.3" y2="522.7"/>
+      <line class="cls-10" x1="329.6" y1="525.5" x2="329.6" y2="522.7"/>
+      <line class="cls-10" x1="430.9" y1="525.5" x2="430.9" y2="522.7"/>
+      <line class="cls-10" x1="532.2" y1="525.5" x2="532.2" y2="522.7"/>
+      <line class="cls-10" x1="633.5" y1="525.5" x2="633.5" y2="522.7"/>
+      <text class="cls-5" transform="translate(110.1 534)"><tspan x="0" y="0">Matched</tspan></text>
+      <text class="cls-5" transform="translate(206.8 534)"><tspan x="0" y="0">Compound</tspan></text>
+      <text class="cls-5" transform="translate(198.5 543.5)"><tspan x="0" y="0">Macromolecule</tspan></text>
+      <text class="cls-5" transform="translate(317.9 534)"><tspan x="0" y="0">Mixed</tspan></text>
+      <text class="cls-5" transform="translate(308.1 543.5)"><tspan x="0" y="0">Compound</tspan></text>
+      <text class="cls-5" transform="translate(419.2 534)"><tspan x="0" y="0">Mixed</tspan></text>
+      <text class="cls-5" transform="translate(401.1 543.5)"><tspan x="0" y="0">Macromolecule</tspan></text>
+      <text class="cls-5" transform="translate(520.5 534)"><tspan x="0" y="0">Mixed</tspan></text>
+      <text class="cls-5" transform="translate(522.2 543.5)"><tspan x="0" y="0">Plant</tspan></text>
+      <text class="cls-5" transform="translate(612 534)"><tspan x="0" y="0">Compound</tspan></text>
+      <text class="cls-5" transform="translate(623.5 543.5)"><tspan x="0" y="0">Plant</tspan></text>
+      <text class="cls-3" transform="translate(317.3 556.2)"><tspan x="0" y="0">Reference Material Matrix</tspan></text>
+      <text class="cls-3" transform="translate(327.4 568.1)"><tspan x="0" y="0">Quality Control Matrix</tspan></text>
+      <text class="cls-3" transform="translate(13.6 515.6) rotate(-90)"><tspan x="0" y="0">% Significant</tspan></text>
     </g>
   </g>
+  <text class="cls-6" transform="translate(647.2 447.8)"><tspan x="0" y="0">90%</tspan></text>
 </svg>
